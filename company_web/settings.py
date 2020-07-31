@@ -188,11 +188,15 @@ CACHES = {
     }
 }
 
+
+
+
+# 邮箱配置
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = False  # 是否使用TLS安全传输协议
 EMAIL_USE_SSL = True  # 是否使用SSL加密，qq企业邮箱要求使用
 EMAIL_HOST = 'smtp.163.com'  # 如果是 163 改成 smtp.163.com
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'wouldmissyou@163.com'  # 帐号
-EMAIL_HOST_PASSWORD = 'll123456789'  # 密码
+EMAIL_HOST_USER = 'xxxxxx'  # 帐号
+EMAIL_HOST_PASSWORD = 'xxxxxx'  # 密码
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

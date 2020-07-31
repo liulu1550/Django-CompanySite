@@ -1,6 +1,6 @@
 # 介绍
 > 本项目使用django==2.1.7+pyhton==3.7开发，满足日常企业需求，
-
+- 手机端和PC端共用后台
 - 自定义官网主题
 - 表单开关可自定义
 - 表单中加入验证码和审核功能，防止恶意提交
@@ -30,6 +30,8 @@
     - 方法二
         - 在数据迁移之后，打开数据库文件，找到数据表System_companysite和System_companyfunction
         - 为两个数据表添加一条数据，每一个主键ID都为1
+
+5. 配置settings.py文件，将邮箱配置修改成你自己的
          
-5. 运行项目
+6. 运行项目
 > python manage.py runserver
