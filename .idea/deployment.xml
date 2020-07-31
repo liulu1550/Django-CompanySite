@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="company" showNewOnSourceInSync="false">
+    <serverData>
+      <paths name="company">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/www/wwwroot/bcompany" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/venv" />
+            <excludedPath path="/www/wwwroot/bcompany/bcompany_venv" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

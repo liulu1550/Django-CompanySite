@@ -1,0 +1,24 @@
+<div id="header" class="Fixed">
+            <a href="#menu" class="mm-hbtn">
+                <div class="lcbody">
+                    <div class="lcitem top">
+                        <div class="rect top"></div>
+                    </div>
+                    <div class="lcitem bottom">
+                        <div class="rect bottom"></div>
+                    </div>
+                </div>
+            </a>
+            <a class="mm-hlogo" href="{% url 'company:index' %}">
+                <img src="/media/{{ site_logo}}"/>
+            </a>
+
+            <div class="searchBtn">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <div class="search-input-wrap">
+                <form action="{% url 'search' %}" method="get">
+                    <input class="header-search-input" name="keywords" autocomplete="off" placeholder="要查找的关键词" type="search">
+                </form>
+            </div>
+        </div>

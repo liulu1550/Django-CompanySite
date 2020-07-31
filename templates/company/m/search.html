@@ -1,0 +1,84 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    搜索
+{% endblock %}
+{% block main-head %}
+<script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+       {% include 'company/m/header.html' %}
+
+        <div class="perch-box">
+        </div>
+        <div class="npagePage">
+            <div class="content">
+                <div class="mlist search module">
+                    <div class="bgmask"></div>
+                    <div class="m_container">
+                        <div class="content">
+                            <div class="wrapper">
+                                <div class="content_list clearfix">
+                                    {% for course in course_list.object_list %}
+                                    <div class="item_block_{{ forloop.counter0 }} item_block wow" style="animation-delay:.{{ forloop.counter0 }}s">
+                                        <a href="{% if course.title %}{% url 'company:news_detail' course.uid %}{% else %}{% url 'company:goods_detail' course.uid %}{% endif %}" target="_blank"
+                                           class="item_box">
+                                            <div class="item_wrapper clearfix">
+                                                <div class="item_info clearfix">
+                                                    <p class="title ellipsis">{% if course.title %}{{ course.title }}
+                                                {% else %}{{ course.name }}
+                                                {% endif %}   </p>
+                                                </div>
+                                                <div class="date_wrap">
+                                                    {{course.create_time}}
+                                                </div>
+                                                <div class="item_des">
+                                                    <p class="description">
+                                                        {{ course.desc}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+
+
+
+                                </div>
+
+
+                                <a href="" class="more wow" style="animation-delay:.5s">更多<i class="fa fa-angle-right"
+                                                                                             aria-hidden="true"></i></a>
+                            </div>
+                            <div id="pages">
+                               {% for page in course_list.pages %}
+                                {% if page %}
+                                    {% ifequal page course_list.number %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="active">{{ page }}</a>
+                                {% else %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="">{{ page }}</a>
+                                    {% endifequal %}
+                                {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+
+{% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+    </body>
+{% endblock %}

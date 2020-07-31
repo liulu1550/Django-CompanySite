@@ -1,0 +1,91 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    实力保证
+{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+    {% include 'company/m/header.html' %}
+
+        <div class="perch-box">
+        </div>
+        <div class="npagePage">
+            <div id="banner">
+                <div style="background-image:url({% static 'm/images/1525252388560.jpg' %});"></div>
+            </div>
+            <div class="content">
+                <div class="mlist service module">
+                    <div class="bgmask"></div>
+                    <div class="m_container">
+                        <div class="content">
+                            <div class="wrapper">
+                                <ul class="content_list clearfix ser-slider">
+                                    {% for strength in strengths.object_list %}
+                                    <li id="item_block_{{ forloop.counter0 }}" class="item_block wow">
+                                        <a href="{% url 'company:strength_detail' strength.id %}" class="item_box">
+                                            <div href="{% url 'company:strength_detail' strength.id %}"
+                                                 class="item_img" target="_blank">
+                                                <img src="/media/{{ strength.thumbnail }}"/>
+                                                <div class="item_mask"></div>
+                                            </div>
+                                            <div class="item_wrapper clearfix">
+                                                <div class="item_info clearfix">
+                                                    <p class="title ellipsis">{{ strength.title }}</p>
+                                                    <p class="subtitle ellipsis"></p>
+                                                </div>
+
+                                                <div class="item_des">
+                                                    <p class="description">{{ strength.desc|slice:40}} ...</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'company:strength_detail' strength.id %}" class="details">详情<i
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <div class="item_tags clearfix"><i class="fa fa-tags"></i></div>
+
+                                    </li>
+                                    {% endfor %}
+
+
+                                </ul>
+                                <a href="{% url 'company:strength_list' %}" class="more wow"
+                                   style="animation-delay:.5s">更多<i class="fa fa-angle-right"
+                                                                    aria-hidden="true"></i></a>
+                            </div>
+                            <div id="pages">
+                                {% for page in strengths.pages %}
+                                    {% if page %}
+                                        {% ifequal page strengths.number %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="active">{{ page }}</a>
+                                        {% else %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="">{{ page }}</a>
+                                        {% endifequal %}
+                                    {% else %}
+                                        <a href="####"
+                                           class="">...</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    {% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+    </body>
+{% endblock %}

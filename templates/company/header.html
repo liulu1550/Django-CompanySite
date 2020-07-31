@@ -1,0 +1,91 @@
+{% load static %}
+<div id="header">
+    <div class="wrapper">
+        <div class="content">
+            <div id="headTop"><a href="{{site_url}}" id="logo"><img
+                    src="/media/{{ site_logo }}" height="44"/>
+                <div style="display:none;"><h1>{{ site_name}}</h1>
+                    <h2>{{ site_description}}</h2></div>
+            </a>
+                <div id="hcontact" class="fr"><i class="fa fa-phone"></i>
+                    <p><span class="telNum">{{ site_phone }}</span><br/><a
+                            href="mailto:{{ site_qq}}">{{ site_qq}}</a></p></div>
+                <div id="search-header" class="searchGroup">
+                    <div class="search_wrap">
+                        <div class="searchOnOff"><i class="fa fa-search" aria-hidden="true"></i></div>
+                        <form class="searchBox" action="{% url 'search' %}" method="get">
+                            <div class="searchFormGroup"><input type="text" aria-label="搜索" placeholder="搜索"
+                                                                autocorrect="off" autocapitalize="off" name="keywords"
+                                                                autocomplete="off" spellcheck="false"/>
+                                <button style="border: none" type="submit" class="searchSub">搜索<i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="searchClose"><i class="fa fa-times" aria-hidden="true"></i></div>
+                        </form>
+                    </div>
+                </div>
+                <div id="openBtn" class="fl btn">
+                    <div class="lcbody">
+                        <div class="lcitem top">
+                            <div class="rect top"></div>
+                        </div>
+                        <div class="lcitem center hide">
+                            <div class="rect bottom"></div>
+                        </div>
+                        <div class="lcitem bottom">
+                            <div class="rect bottom"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="navWrapper">
+                <div class="content">
+                    <ul class="nav movedx" data-movedx-mid="1">
+                        <li class="navitem"><a  {% if request.path == '/' %} class="active" {% endif %} href="{{site_url}}"
+                                               target="_self"><span data-title="首页">首页</span></a></li>
+                        <li class="navitem"><a  {% if request.path|slice:'6' == '/goods' %} class="active" {% endif %}   href="{% url 'company:goods_list_all' %}"
+                                               target="_self"><span data-title="产品中心">产品中心</span></a></li>
+                        <li class="navitem"><a  {% if request.path|slice:'6' == '/video' %} class="active" {% endif %}  href="{% url 'company:video_list' %}"
+                                               target="_self"><span data-title="视频中心">视频中心</span></a></li>
+                        <li class="navitem"><a {% if request.path|slice:'9' == '/strength' %} class="active" {% endif %} href="{% url 'company:strength_list' %}"
+                                               target="_self"><span data-title="实力保证">实力保证</span></a></li>
+                        <li class="navitem"><a {% if request.path|slice:'6' == '/about' %} class="active" {% endif %}  href="{% url 'company:about' %}"
+                                               target="_self"><span data-title="关于我们">关于我们</span></a></li>
+                        <li class="navitem"><a {% if request.path|slice:'5' == '/news' %} class="active" {% endif %} href="javascript:;" target=""><span data-title="新闻中心">新闻</span><i
+                                class="fa fa-angle-down"></i></a>
+                            <ul class="subnav">
+                            <li><a href="{% url 'company:news_list_all' %}" target="_self">全部</a></li>
+                                {% for news_category in news_categories %}
+                                <li><a href="{% url 'company:news_list' news_category.name %}" target="_self">{{ news_category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% if company_function.page_form_state == 'ON' %}
+                    <li class="navitem"><a {% if request.path|slice:'6' == '/apply' %} class="active" {% endif %} href="{% url 'company:apply' %}" target="_self"><span
+                                data-title="免费领取">免费领取</span></a></li>
+                    {% endif %} 
+
+                        <li class="navitem"><a {% if request.path|slice:'8' == '/contact' %} class="active" {% endif %} href="{% url 'company:contact' %}" target="_self"><span
+                                data-title="联系我们">联系我们</span></a></li>
+                        <li class="navitem" style="display:none"><a class="active"></a></li>
+                    </ul>
+                    <div id="search-nav" class="searchGroup oldSearch">
+                        <div class="search_wrap">
+                            <div class="searchOnOff"><i class="fa fa-search" aria-hidden="true"></i></div>
+                            <div class="searchBox">
+                                <div class="searchFormGroup"><input type="text" aria-label="搜索" placeholder="搜索"
+                                                                    autocorrect="off" autocapitalize="off"
+                                                                    autocomplete="off" spellcheck="false"/>
+                                    <div class="searchSub"><span>搜索</span><i class="fa fa-search"
+                                                                             aria-hidden="true"></i></div>
+                                </div>
+                                <div class="searchClose"><i class="fa fa-times" aria-hidden="true"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

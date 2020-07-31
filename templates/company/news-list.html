@@ -1,0 +1,127 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %}新闻中心{% endblock %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+    <body id="longPage" class="gh0  longPage  bodylist bodynews cn" data-uid="8390" data-form="5f114891c6dd2">
+
+    <div class="bodyMask"></div>
+
+    {% include 'company/header.html' %}
+    <div id="sitecontent" class="ff_sitecontent">
+        <div class="npagePage ff_pageList">
+            <div id="pageTarget" class="ff_pageTarget module">
+                <div class="module_container">
+                    <div class="container_header wow hide">
+                        <p class="title">新闻</p>
+                        <p class="subtitle">News</p>
+                    </div>
+                    <div class="container_target wow">您的位置：
+                        <a href="{% url 'company:index' %}">首页</a><i class="fa fa-angle-right"></i>
+                        <a href="">新闻中心</a></div>
+                    <div class="container_category wow movedx" data-movedx-mid="2" data-movedx-distance="15">
+                        <a href="{% url 'company:news_list_all' %}" {% if request.path == '/news/category/' %}
+                           class="active"
+                        {% endif %} >
+                            <span>全部</span>
+                        </a>
+                        {% for category in categories %}
+                            <a href="{% url 'company:news_list' category.name %}" {% if category.name in request.path %}
+                               class="active"
+                            {% endif %} >
+                                <span>{{ category.name }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="mlist news module ff_noSlider" style="">
+                    <div class="bgmask"></div>
+                    <div class="module_container">
+                        <div class="container_content">
+                            <div class="content_wrapper">
+                                <div class="content_list clearfix">
+                                    {% for news in news.object_list %}
+                                        <div id="item_block_{{ forloop.counter0 }}"
+                                             class="item_block_{{ forloop.counter0 }} item_block wow"
+                                             style="animation-delay:.{{ forloop.counter0 }}s">
+                                            <div class="item_index">{{ forloop.counter0 }}</div>
+                                            <a href="{% url 'company:news_detail' news.uid %}" class="item_box">
+                                                <div href="{% url 'company:news_detail' news.uid %}"
+                                                     class="item_img"
+                                                     target="_blank" >
+                                                    <img style="display: inline-block;max-width: 405px;max-height: 190px" src="/media/{{ news.thumbnail }}"/>
+                                                    <div class="item_mask"></div>
+                                                </div>
+                                                <div class="item_wrapper clearfix">
+                                                    <div class="item_info clearfix">
+                                                        <div class="date_wrap">
+                                                            <span class="year">{{ news.create_time|date:'Y' }}</span><i
+                                                                class="time-connect">-</i><span
+                                                                class="m">{{ news.create_time|date:'Y' }}</span><i
+                                                                class="time-connect">-</i><span
+                                                                class="d">{{ news.create_time|date:'Y' }}</span>
+                                                        </div>
+                                                        <p class="title ellipsis">{{ news.title }}</p>
+                                                        <p class="subtitle ellipsis"></p>
+                                                    </div>
+                                                    <div class="date_wrap">
+                                                       <span class="year">{{ news.create_time|date:'Y' }}</span><i
+                                                                class="time-connect">-</i><span
+                                                                class="m">{{ news.create_time|date:'m' }}</span><i
+                                                                class="time-connect">-</i><span
+                                                                class="d">{{ news.create_time|date:'d' }}</span>
+                                                    </div>
+                                                    <div class="item_des">
+                                                        <p class="description">
+                                                            {{ news.desc|slice:40 }}
+                                                            ...</p>
+                                                    </div>
+                                                    <span href="{% url 'company:news_detail' news.uid %}"
+                                                          class="details hide">
+						MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+                                                </div>
+                                                <div class="item_index">{{ forloop.counter0 }}</div>
+                                            </a>
+                                            <a href="{% url 'company:news_detail' news.uid %}" class="details">
+                                                MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </a>
+
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div id="pages">
+                                <a class="prev disable hide" href="javascript:;"><i class="fa fa-angle-left"></i></a>
+                                {% for page in news.pages %}
+                                    {% if page %}
+                                        {% ifequal page news.number %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="page-item  active">{{ page }}</a>
+                                        {% else %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="page-item">{{ page }}</a>
+                                        {% endifequal %}
+                                    {% endif %}
+                                {% endfor %}
+                                <a class="next disable hide" href="javascript:;"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'company/footer.html' %}
+
+    </body>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %}
+搜索
+{% endblock %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+<body id="longPage" class="gh0  longPage  searchPage  cn" data-uid="8390" data-form="5f1148922f060">
+
+<div class="bodyMask"></div>
+
+{% include 'company/header.html' %}
+<div id="sitecontent" class="ff_sitecontent">
+
+    <div class="npagePage ff_pageList">
+
+
+        <div class="content">
+            <div class="mlist search module ff_noSlider"
+
+                 style="
+
+
+
+ ">
+
+
+                <div class="bgmask"></div>
+
+                <div class="module_container">
+
+
+                    <div class="container_content nocat">
+
+                        <div class="content_wrapper">
+
+                            <div id="search-list" class="searchGroup">
+                                <div class="search_wrap">
+                                    <div class="searchOnOff">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </div>
+                                    <form method="get" action="{% url 'search' %}" class="searchBox">
+                                        <div class="searchFormGroup">
+                                            <input type="text" aria-label="搜索" placeholder="{{ keywords }}" value="{{ keywords }}" autocorrect="off" name="keywords"
+                                                   autocapitalize="off" autocomplete="off" spellcheck="false"/>
+                                            <button style="border: none" type="submit" class="searchSub">搜索<i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                        </div>
+                                        <div class="searchClose"><i class="fa fa-times" aria-hidden="true"></i></div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="content_list clearfix">
+
+                                {% for course in course_list.object_list %}
+                                <div class="item_block_{{ forloop.counter0 }} item_block wow" style="animation-delay:.{{ forloop.counter0 }}s">
+                                    <div class="item_index">{{ forloop.counter0 }}</div>
+                                    <a href="{% if course.title %}{% url 'company:news_detail' course.uid %}{% else %}{% url 'company:goods_detail' course.uid %}{% endif %}" target="_blank"
+                                       class="item_box">
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <div class="date_wrap">
+                                                    {{course.create_time}}
+                                                </div>
+                                                <p class="title ellipsis">{% if course.title %}{{ course.title }}
+                                                {% else %}{{ course.name }}
+                                                {% endif %}   </p>
+                                            </div>
+                                            <div class="date_wrap">
+                                                {{course.create_time}}
+                                            </div>
+                                            <div class="item_des">
+                                                <p class="description">
+                                                    {{ course.desc}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'company:news_detail' course.uid %}" class="details">
+                                        MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+
+
+                                {% endfor %}
+                            </div>
+
+
+                        </div>
+
+
+                        <div id="pages">
+
+
+                            <a class="prev disable hide" href="javascript:;"><i class="fa fa-angle-left"></i></a>
+
+
+                           {% for page in course_list.pages %}
+                                {% if page %}
+                                    {% ifequal page course_list.number %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="page-item  active">{{ page }}</a>
+                                {% else %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="page-item">{{ page }}</a>
+                                    {% endifequal %}
+                                {% endif %}
+                            {% endfor %}
+
+                            <a class="next disable hide" href="javascript:;"><i class="fa fa-angle-right"></i></a>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="clear"></div>
+
+        </div>
+
+    </div>
+</div>
+{% include 'company/footer.html' %}
+</body>
+{% endblock %}

@@ -1,0 +1,91 @@
+ <nav id="menu">
+
+            <ul>
+
+
+                <li>
+
+
+                    <a {% if request.path == '/' %} class="active" {% endif %} href="{% url 'company:index' %}" target="_self">首页</a>
+
+
+                </li>
+
+
+                <li>
+
+
+                    <a {% if request.path|slice:'6' == '/goods' %} class="active" {% endif %} href="{% url 'company:goods_list_all' %}" target="_self">产品中心</a>
+
+
+                </li>
+
+
+                <li>
+
+
+                    <a {% if request.path|slice:'6' == '/video' %} class="active" {% endif %} href="{% url 'company:video_list' %}" target="_self">视频中心</a>
+
+
+                </li>
+
+
+                <li>
+
+
+                    <a {% if request.path|slice:'9' == '/strength' %} class="active" {% endif %} href="{% url 'company:strength_list' %}" target="_self">实力保证</a>
+
+
+                </li>
+
+
+                <li>
+
+
+                    <a {% if request.path|slice:'6' == '/about' %} class="active" {% endif %}  href="{% url 'company:about' %}" target="_self">关于我们</a>
+
+
+                </li>
+
+
+                <li>
+
+
+                    <a {% if request.path|slice:'5' == '/news' %} class="active" {% endif %} href="####" target="">新闻</a>
+
+
+                    <ul class="subnav">
+                        <li><a href="{% url 'company:news_list_all' %}" target="_self">全部</a></li>
+
+                       {% for news_category in news_categories %}
+                                <li><a href="{% url 'company:news_list' news_category.name %}" target="_self">{{ news_category.name }}</a></li>
+                                {% endfor %}
+
+
+                    </ul>
+
+
+                </li>
+
+{% if company_function.page_form_state == 'ON' %}
+                <li>
+
+
+                    <a {% if request.path|slice:'6' == '/apply' %} class="active" {% endif %} href="{% url 'company:apply' %}" target="_self">免费领取</a>
+
+
+                </li>
+ {% endif %}
+
+                <li>
+
+
+                    <a {% if request.path|slice:'8' == '/contact' %} class="active" {% endif %}  href="{% url 'company:contact' %}" target="_self">联系我们</a>
+
+
+                </li>
+
+
+            </ul>
+
+        </nav>

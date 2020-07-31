@@ -1,0 +1,134 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %}
+实力保证
+{% endblock %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="baseMain"></script>
+{% endblock %}
+
+{% block body %}
+<body id="longPage" class="gh0  longPage  bodylist bodyservice cn" data-uid="8390" data-form="5f11489130cb2">
+
+<div class="bodyMask"></div>
+
+{% include 'company/header.html' %}
+<div id="sitecontent" class="ff_sitecontent">
+    <div class="npagePage ff_pageList">
+        <div id="banner">
+            <div style="background-image:url({% static 'images/1525252388560.jpg' %});"></div>
+        </div>
+        <div id="pageTarget" class="ff_pageTarget module">
+
+            <div class="module_container">
+
+                <div class="container_header wow hide">
+
+                    <p class="title">实力保证</p>
+
+                    <p class="subtitle">全国十大畅销品牌，全国消费者放心满意</p>
+
+                </div>
+
+                <div class="container_target wow">您的位置：
+                    <a href="{% url 'company:index' %}"
+
+                    >首页</a><i class="fa fa-angle-right"></i>
+                    <a href="{% url 'company:strength_list' %}"
+
+                    >实力保证</a></div>
+
+
+                <div class="container_category wow movedx" data-movedx-mid="2" data-movedx-distance="15">
+
+
+                </div>
+
+
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+        <div class="content">
+            <div class="mlist service module ff_noSlider" style="">
+                <div class="bgmask"></div>
+                <div class="module_container">
+                    <div class="container_content nocat">
+                        <div class="content_wrapper">
+                            <div class="content_list clearfix">
+                                {% for strength in strengths.object_list %}
+                                <div id="item_block_{{ forloop.counter0 }}" class="item_block_{{ forloop.counter0 }} item_block wow" style="animation-delay:.{{ forloop.counter0 }}s">
+                                    <div class="item_index">{{ forloop.counter0 }}</div>
+                                    <a href="{% url 'company:strength_detail' strength.id %}" class="item_box">
+                                        <div href="{% url 'company:strength_detail' strength.id %}" class="item_img"
+                                             target="_blank">
+                                            <img src="/media/{{ strength.thumbnail }}"/>
+                                            <div class="item_mask"></div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <p class="title ellipsis">{{ strength.title }}</p>
+                                                <p class="subtitle ellipsis"></p>
+                                            </div>
+                                            <div class="item_des">
+                                                <p class="description">{{ strength.desc|slice:40}} ...</p>
+                                            </div>
+                                            <span href="{% url 'company:strength_detail' strength.id %}"
+                                                  class="details hide">
+						MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+                                        </div>
+                                        <div class="item_index">{{ forloop.counter0 }}</div>
+                                    </a>
+                                    <a href="{% url 'company:strength_detail' strength.id %}" class="details">
+                                        MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="item_tags clearfix">
+                                        <i class="fa fa-tags"></i>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+
+                        <div id="pages">
+
+
+                            <a class="prev disable hide" href="javascript:;"><i class="fa fa-angle-left"></i></a>
+{% for page in strengths.pages %}
+                                {% if page %}
+                                    {% ifequal page strengths.number %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="page-item  active">{{ page }}</a>
+                                {% else %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="page-item">{{ page }}</a>
+                                    {% endifequal %}
+                                {% endif %}
+                            {% endfor %}
+                            <a class="next disable hide" href="javascript:;"><i class="fa fa-angle-right"></i></a>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="clear"></div>
+
+        </div>
+
+    </div>
+</div>
+{% include 'company/footer.html' %}
+</body>
+{% endblock %}

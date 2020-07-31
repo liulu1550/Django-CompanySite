@@ -1,0 +1,71 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    {{ goods.name }}
+{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="postMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+
+            {% include 'company/m/header.html' %}
+        <div class="npagePage post ">
+
+
+            <div class="content">
+                <div class="mlistpost project module">
+                    <div class="module_container">
+                        <div class="container_content">
+                            <div class="content_wrapper">
+                                <div id="postWrapper">
+                                    <div id="postSlider">
+                                        <ul class="content_list slider">
+                                            {% for goods_banner in goods_banners %}
+                                            <li id="pptc_item_block_{{ forloop.counter0 }}" class="sItem_block">
+                                                <div class="wrapper">
+                                                    <div class="item_img">
+                                                        <img src="/media/{{ goods_banner.pic }}"/>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+
+
+                                        </ul>
+                                    </div>
+                                    <div id="postInfo">
+                                        <div class="wrapper" data-sf-top="20">
+                                            <p class="title">{{ goods.name }}</p>
+                                            <p class="subtitle"></p>
+                                            <div class="description"><p>{{ goods.desc}} ...</p></div>
+                                        </div>
+                                    </div>
+                                    <div id="postContent">
+                                        <div class="postbody">{{goods_body.body|safe}}</div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+{% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+
+    </body>
+{% endblock %}

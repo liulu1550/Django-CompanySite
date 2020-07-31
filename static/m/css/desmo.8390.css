@@ -1,0 +1,436 @@
+/* 织梦58（dede58.com）做最好的织梦整站模板下载网站 */
+/* css */
+
+.mlist .container_header .title {
+	padding-top: 20px;
+}
+.agent-mobile .team .item_block .subtitle {
+	line-height: 14px;
+}
+.agent-mobile .team_tabs .tab_content .content_list li .description {
+	margin-top: 12px;
+	max-height: 40px;
+	overflow: hidden;
+}
+.pageEditor .content {
+	padding-top: 30px;
+}
+.npagePage.pageEditor .container_header.wow {
+	animation: none;
+}
+/* 修改 */
+
+.agent-mobile .service .subtitle {
+	display: none;
+}
+.agent-mobile .service .item_wrapper .item_des {
+	display: block;
+}
+.agent-mobile .service .item_info {
+	padding: 5% 10%;
+}
+.agent-mobile .service .item_info .title {
+	font-size: 16px;
+}
+.agent-mobile .service .wrapper {
+	overflow: visible;
+}
+.agent-mobile .service .bx-controls-direction {
+	display: none;
+}
+.agent-mobile .service .bx-wrapper .bx-pager {
+	bottom: -25px;
+}
+.agent-mobile .project .item_block {
+	width: 100%;
+	background: #f8f8f8;
+}
+.agent-mobile .project .item_block .item_box {
+	overflow: hidden;
+	position: relative;
+}
+.agent-mobile .project .item_block .item_img {
+	width: 50%;
+	float: left;
+	overflow: hidden;
+}
+.agent-mobile .project .item_block .item_wrapper {
+	background: none !important;
+}
+.agent-mobile .project .item_block:hover {
+	background-color: var(--color);
+}
+.agent-mobile .project .item_block .item_wrapper {
+	width: 50%;
+	float: right;
+	position: absolute;
+	top: 50%;
+	right: 0;/* transform: translateY(-50%); */
+}
+.agent-mobile .project .item_block .title, .agent-mobile .project .item_block .subtitle {
+	text-align: left;
+}
+.agent-mobile .project .item_block .subtitle {
+	margin-top: 0;
+	margin-bottom: 6px;
+}
+.agent-mobile .project .item_des {
+	display: block;
+	text-align: left;
+	padding: 0 20px;
+	line-height: 16px;
+	height: 40px;
+	overflow: hidden;
+	box-sizing: border-box;
+	color: #777;
+}
+.agent-mobile .project .item_block .item_info {
+	padding: 0 20px;
+}
+.agent-mobile .project .content_list .item_block:hover .description {
+	color: rgba(255, 255, 255, .56);
+}
+.agent-mobile .team .item_block {
+	width: 48%;
+	margin: 1%;
+	margin-bottom: 20px;
+	float: left;
+}
+.agent-mobile .team .description {
+	text-align: left;
+}
+.agent-mobile .team .item_block .item_wrapper {
+	transition: all 0.36s ease;
+	padding: 10px 0;
+}
+.agent-mobile .team .item_block:hover .item_wrapper {
+	background-color: var(--color);
+}
+.agent-mobile .team .item_block:hover .title {
+	color: #fff;
+}
+.agent-mobile .team .content_list .item_block:hover .subtitle {
+	color: rgba(255, 255, 255, .56);
+}
+.agent-mobile .team .content_list .item_block:hover .description {
+	color: rgba(255, 255, 255, .56);
+}
+.agent-mobile .team .description {
+	display: block;
+	padding: 0 12px;
+	line-height: 20px;
+	height: 40px;
+	overflow: hidden;
+	box-sizing: border-box;
+	color: #777;
+	margin-top: 6px;
+}
+.agent-mobile .team .item_block .item_info {
+	padding: 0 12px;
+}
+.module.mcustomize .header .title, #mcontact .container_header .title {
+	color: var(--color);
+}
+#mcontact .container_header .subtitle, .mlist .container_header .subtitle, .module.mcustomize .header .subtitle {
+	line-height: 22px;
+}
+.agent-mobile .team_tabs .tab_content .content_list li .description {
+	max-height: 100px;
+	overflow: auto;
+}
+.agent-mobile .imagelink .content {
+	padding-bottom: 0;
+}
+.agent-mobile #header {
+	box-shadow: 0 0px 48px 0 rgba(0, 0, 0, .1)
+}
+.npagePage .service .item_block {
+	margin-bottom: 20px;
+}
+.npagePage.post #listContent {
+	overflow: hidden;
+}
+/* #mcontact .contactinfo p {
+    width: 50%;
+    float: left;
+} */
+
+#mcontact .contactinfo p.add {
+	width: 100%;
+}
+.share_app {
+	clear: both;
+}
+#contactform {
+	padding: 24px 5% 0;
+}
+#contactform input, textarea {
+	width: calc(100% - 40px);
+	border: 1px solid #ececec;
+	height: 18px;
+	line-height: 18px;
+	vertical-align: middle;
+	color: #333;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+	transition: all 0.3s ease-out 0s;
+	background-color: transparent;
+}
+#contactform textarea {
+	height: 100px;
+	resize: none;
+	overflow: hidden;
+}
+#contactform .submit:hover {
+	background-color: #7B7B7B;
+}
+#contactform .submit {
+	background-color: #5f5f5f;
+	height: 48px;
+	transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	width: 100%;
+	color: #ffffff;
+	font-size: 16px;
+	padding: 5px 0;
+	cursor: pointer;
+}
+.agent-mobile .project .description, .agent-mobile .service .description, .agent-mobile .news .description {
+	line-height: 20px;
+}
+.agent-mobile .project .item_block .item_wrapper {
+	margin-top: -40px;
+}
+.agent-mobile .team_tabs .tab_content .content_list li .description {
+	color: #7c7c7c;
+}
+/* end */
+/* css */
+
+.agent-mobile .ad01 .content_list li#item_block_0 {
+	width: 33.3%;
+}
+.agent-mobile .ad01 .content_list li.item_block {
+	margin-bottom: 10px;
+	width: 33.3%;
+}
+.agent-mobile .ad01 {
+	padding: 10px 0;
+}
+.agent-mobile .project .item_block .item_img::before, .agent-mobile .project .content_list .item_block:hover .item_img::before {
+	border: none;
+}
+.agent-mobile .mlist.ad01 .m_container {
+	width: 96%;
+	margin-left: 2%;
+}
+.agent-mobile .indexPage .mlist.project .container_header .title {
+	padding-top: 0;
+}
+.agent-mobile .ad01 .content_list li .item_info {
+	display: none;
+}
+.agent-mobile .project .item_block {
+	background-color: #f6f7fb;
+}
+.agent-mobile .project .item_block .item_img {
+	width: 48%;
+}
+.agent-mobile .project .item_block .item_wrapper {
+	margin-top: -35px;
+}
+.agent-mobile .mlist.videom .content_list .item_wrapper .date_wrap {
+	display: none;
+}
+.agent-mobile .mlist.videom .content_list .item_block .item_tags {
+	display: none;
+}
+.agent-mobile .mlist.videom .content_list {
+	width: 94%;
+	margin: 0 auto;
+}
+.agent-mobile .mlist.videom .content_list .item_block .item_img img {
+	border-radius: 10px;
+}
+.agent-mobile .mlist.videom .content_list .item_wrapper {
+	padding: 20px 0;
+	text-align: left;
+}
+.agent-mobile .mlist.videom .content_list .item_wrapper .item_info .title {
+	font-size: 1.25em;
+	color: #333;
+	line-height: 1.8em;
+}
+.agent-mobile .mlist.videom .content_list .item_wrapper .item_info .subtitle {
+	font-size: 1.1em;
+}
+.agent-mobile .mlist.videom .content_list .item_wrapper .description {
+	line-height: 1.9em;
+	padding-top: 15px;
+	display: inline-block;
+}
+.agent-mobile .mlist.videom .content_list .item_wrapper .description p {
+	display: inline;
+}
+.agent-mobile .mlist.videom .content_list .item_wrapper .item_info .text_wrap {
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	padding-bottom: 15px;
+}
+.agent-mobile .mlist.videom .content_list .item_block a.details {
+	display: none;
+	text-align: left;
+}
+.agent-mobile .service .subtitle {
+	display: block;
+}
+.agent-mobile .project .item_block:hover {
+	background-color: var(--color);
+}
+.agent-mobile .mlist.service {
+	background-color: #f6f7fb;
+	padding-bottom: 40px;
+}
+.agent-mobile .indexPage .module.mcustomize .header .title {
+	font-size: 1.2em;
+}
+.agent-mobile .indexPage .mcustomize .description a {
+	padding: 10px 50px;
+	background-color: var(--color);
+	border-color: var(--color);
+	color: #fff;
+	border-radius: 50px;
+	position: absolute;
+	left: 50%;
+	white-space: nowrap;
+	transform: translateX(-50%);
+}
+.agent-mobile .indexPage .mcustomize .description a:hover {
+	background-color: #ffb439;
+	border-color: #ffb439;
+}
+.agent-mobile .indexPage .module.mcustomize .description {
+	padding-bottom: 20px;
+}
+.agent-mobile .indexPage .team .description {
+	display: none;
+}
+.agent-mobile .team .item_block:hover .item_wrapper {
+	background-color: var(--color);
+}
+.agent-mobile .team .item_block {
+	transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.agent-mobile .team .item_block:hover {
+	background-color: #f6f7fb;
+}
+.agent-mobile .team .item_block .title {
+	line-height: 1.8em;
+}
+.agent-mobile .team .item_block .item_wrapper {
+	padding-bottom: 13px;
+}
+.agent-mobile .team .item_block .item_info {
+	padding-left: 15px;
+}
+.agent-mobile .module.mcounter ul.content_list li div:after {
+	background-color: rgba(0, 0, 0, .08);
+	top: 30px;
+}
+.agent-mobile .module.mcounter ul.content_list li:nth-child(3) div:after, .agent-mobile .module.mcounter ul.content_list li:nth-child(4) div:after {
+	background-color: transparent;
+}
+.agent-mobile .news .content_list li {
+	border-color: rgba(0, 0, 0, .08);
+}
+.agent-mobile .module.mcounter ul.content_list li p.number .counterDX {
+	font-size: 34px;
+}
+.agent-mobile .imagelink .content {
+	padding-top: 0;
+}
+/* .agent-mobile #mcontact .contactlist  { position: relative; margin-top: 400px;} */
+
+/* .agent-mobile #mcontact #contactform { position: absolute;width: 90%;
+    margin-top: -680px;} */
+
+.agent-mobile #mcontact .container_header .title {
+	line-height: 1.8em;
+}
+.agent-mobile #mcontact .container_header {
+	order: 0;
+}
+.agent-mobile #mcontact .contactlist {
+	order: 2;
+}
+.agent-mobile #mcontact {
+	display: flex;
+	flex-direction: column;
+}
+.agent-mobile .postbody {
+	line-height: 1.5em;
+	font-size: 13px;
+}
+.agent-mobile .cate-box {
+	top: 50px;
+	bottom: 0;
+	height: auto;
+}
+.agent-mobile .contactlist {
+	padding-top: 30px;
+}
+.agent-mobile #contactform {
+	padding-top: 0;
+}
+.agent-mobile #mcontact .contactinfo p {
+	height: auto;
+}
+body, html {
+	line-height: 1.25em;
+}
+.mm-listview>li>a, .mm-listview>li>span {
+	line-height: 24px;
+}
+.mm-menu .mm-listview>li:after {
+	border-color: rgba(0,0,0,.08);
+}
+.agent-mobile .team .description {
+	padding-left: 15px;
+}
+.npagePage.post .team #postInfo .description {
+	display: none;
+}
+/* 8390 -- end */
+
+.agent-mobile .indexPage .mlist .container_header .title {
+	line-height: 1.3em;
+	font-size: 17px;
+}
+.agent-mobile #category .label .text {
+	font-size: 13px;
+}
+.agent-mobile .postbody {
+	line-height: 1.6em;
+}
+.agent-mobile .mm-menu .mm-navbar>a {
+	color: rgba(0, 0, 0, .5);
+	font-size: 13px;
+}
+.agent-mobile .npagePage.pageEditor .container_header .title {
+	line-height: 1.6em;
+	font-size: 17px;
+}
+.agent-mobile .npagePage .mlist {
+	padding-top: 10px;
+}
+.agent-mobile .npagePage.post #postInfo .description {
+	display: none;
+}
+.agent-mobile .npagePage.post #postContent {
+	border-top: 1px solid rgba(0, 0, 0, .08);
+	padding-top: 20px;
+}
+.agent-mobile .npagePage.post #postInfo .subtitle {
+	margin-top: 7px;
+}
+.agent-mobile .npagePage.formPage .container_header .title {
+	margin-bottom: 5px !important;
+}

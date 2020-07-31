@@ -1,0 +1,30 @@
+{% load static %}
+<div id="footer">
+    <p>
+        <span class="ellipsis"> COPYRIGHT (©) {{ site_copyright }}. </span><a class="beian" href="http://www.beian.miit.gov.cn"
+                                                                                               rel="nofollow"
+                                                                                               style="color: #363636;vertical-align: top;margin-left: 10px;display: inline-block;"
+                                                                                               target="_blank"></a></p>
+</div>
+<div id="shares"><a href="{{ site_weibo }}" rel="nofollow" target="_blank"
+                    id="sweibo"><i class="fa fa-weibo"></i></a><a href="javascript:;" id="sweixin"><i
+        class="fa fa-mobile"></i></a><a href="javascript:;" id="gotop"><i class="fa fa-angle-up"></i></a></div>
+<div class="fixed" id="fixed_weixin">
+    <div class="fixed-container">
+        <div id="qrcode"></div>
+        <p>扫描二维码分享到微信</p></div>
+</div>
+<div id="online_open"><i class="fa fa-comments-o"></i></div>
+<div id="online_lx">
+    <div id="olx_head">在线咨询<i class="fa fa-times fr" id="online_close"></i></div>
+    <ul id="olx_qq">
+        <li><a href="tencent://message/?uin={{ site_qq }}&Site=uelike&Menu=yes"><i class="fa fa-qq"></i>{{ site_qq }}</a></li>
+    </ul>
+    <div id="olx_tel">
+        <div><i class="fa fa-phone"></i>联系电话</div>
+        <p>{{ site_phone }}<br/></p></div>
+</div>
+<a id="openAssist" href="javascript:;"><i class="icon iconfont icon-add"></i></a>
+<div id="assistBtn"><a href="javascript:;" onclick="$('html,body').scrollTop(0);return false;"><i
+        class="fa fa-angle-up"></i></a><a class="_fa-tel" href="tel:{{ site_phone }}"><i class="fa fa-phone"></i></a><a
+        class="_fa-qq" href="mqqwpa://im/chat?chat_type=wpa&uin=&version=1"><i class="fa fa-qq"></i></a></div>

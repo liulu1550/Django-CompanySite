@@ -1,0 +1,1277 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %}
+    免费领取
+{% endblock %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block head %}
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script src="{% static 'js/layer.js' %}"></script>
+    <script src="{% static 'js/apply.js' %}"></script>
+
+{% endblock %}
+{% block body %}
+    <body id="longPage" class="gh0  longPage   bodypage cn" data-uid="8390" data-form="5f114891efb8f">
+
+    <div class="bodyMask"></div>
+
+    {% include 'company/header.html' %}
+    <div id="sitecontent" class="ff_sitecontent">
+
+<script>
+
+    // form
+
+    var MOFORM = (function () {
+
+
+
+        $.fn.extend({
+
+
+
+            tabActive2: function (config) {
+
+                let evTarget, box,
+
+                    initConfig = {
+
+                        target: '',
+
+                        box: '',
+
+                        className: 'active',
+
+                        initFn: function () {},
+
+                        inFn: function () {},
+
+                        outFn: function () {},
+
+                        tabFn: function () {},
+
+                        type: 1
+
+                    };
+
+
+
+                config = $.extend(initConfig, config);
+
+
+
+                evTarget = config.target ? $(this).closest(config.target) : $(this);
+
+                if (!config.box) {
+
+                    config.type = 'single';
+
+                } else {
+
+                    box = evTarget.closest(config.box);
+
+                }
+
+                config.initFn();
+
+
+
+                switch (initConfig.type) {
+
+                    // 1 -- 点击可以再次取消，但是一次只能点击一个
+
+                    case 1:
+
+
+
+                        if (evTarget.hasClass(config.className)) {
+
+
+
+                            evTarget.removeClass(config.className);
+
+                            config.outFn.call(evTarget, evTarget);
+
+                        } else {
+
+
+
+                            let currentEl = box.find(config.target + '.' + config.className);
+
+
+
+                            currentEl.removeClass(config.className);
+
+                            config.outFn.call(currentEl, currentEl);
+
+
+
+                            evTarget.addClass(config.className);
+
+                            config.inFn.call(evTarget, evTarget);
+
+                        }
+
+                        break;
+
+
+
+                        // 2 -- 至少选中一个
+
+                    case 2:
+
+
+
+                        if (evTarget.hasClass(config.className)) {
+
+
+
+                            config.inFn.call(evTarget, evTarget);
+
+                            return;
+
+                        } else {
+
+                            let currentEl = box.find(config.target + '.' + config.className);
+
+
+
+                            config.outFn.call(currentEl, currentEl);
+
+                            currentEl.removeClass(config.className);
+
+
+
+                            evTarget.addClass(config.className);
+
+                            config.inFn.call(evTarget, evTarget);
+
+                        }
+
+                        break;
+
+
+
+                        // 可以多选
+
+                    case 3:
+
+
+
+                        if (evTarget.hasClass(config.className)) {
+
+                            evTarget.removeClass(config.className);
+
+                            config.outFn.call(evTarget, evTarget);
+
+                        } else {
+
+                            evTarget.addClass(config.className);
+
+                            config.inFn.call(evTarget, evTarget);
+
+                        }
+
+                        break;
+
+
+
+                    case 'single':
+
+
+
+                        if (evTarget.hasClass(config.className)) {
+
+
+
+                            evTarget.removeClass(config.className);
+
+                            config.outFn.call(evTarget, evTarget);
+
+                        } else {
+
+
+
+                            evTarget.addClass(config.className);
+
+                            config.inFn.call(evTarget, evTarget);
+
+                        }
+
+                        break;
+
+
+
+                    default:
+
+                        break;
+
+                }
+
+
+
+                config.tabFn.call(evTarget);
+
+            }
+
+        });
+
+        $.extend({
+
+            /**
+
+             * 获取元素能够存放的位置
+
+             * @param {DOMString} reldom 以这个元素为基础，进行判断
+
+             * @param {DOMString} box 以这个元素为容器，进行判断
+
+             * @param {String} priorotu 优先方向
+
+             */
+
+            freeZone: function (reldom, box, priority) {
+
+                let domInfor = $(this)[0].getBoundingClientRect(),
+
+                    reldomInfor = $(reldom)[0].getBoundingClientRect(),
+
+                    boxInfor = $(box)[0].getBoundingClientRect(),
+
+                    freeInfor, styleInfor;
+
+
+
+                freeInfor = {
+
+                    top: reldomInfor.top - boxInfor.top > domInfor.height,
+
+                    bottom: boxInfor.bottom - reldomInfor.bottom > domInfor.height,
+
+                    left: reldomInfor.left - boxInfor.left > domInfor.width,
+
+                    right: boxInfor.right - reldomInfor.right > domInfor.width,
+
+                };
+
+
+
+                styleInfor = {
+
+                    top: {
+
+                        position: absolute,
+
+                        top: auto,
+
+                        right: auto,
+
+                        left: 0,
+
+                        bottom: '100%'
+
+                    }
+
+                }
+
+
+
+                if (freeInfor[priority]) {
+
+                    return {
+
+                        first: priority,
+
+                        infor: freeInfor
+
+                    };
+
+                }
+
+
+
+                for (const key in freeInfor) {
+
+                    if (freeInfor.hasOwnProperty(key)) {
+
+                        const infor = freeInfor[key];
+
+                        if (infor) {
+
+                            return {
+
+                                first: key,
+
+                                infor: freeInfor
+
+                            };
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+        var MOFORM = function (el, option) {
+
+            this.dom = $(el);
+
+            this.dom.data('mofrom', this);
+
+            this.option = option;
+
+        };
+
+
+
+        MOFORM.prototype = {
+
+            constructor: MOFORM,
+
+            initForm: function () {
+
+                this.initCheckBox();
+
+                this.initRadio();
+
+                this.initSelectInput();
+
+                return this;
+
+            },
+
+            initCheckBox: function (el) {
+
+                var checkBoxs = el ? $(el) : this.dom.find('.mo-checkbox-wrap');
+
+                $(checkBoxs).each(function (i, e) {
+
+                    $(e).on('click.checkbox', '.mo-checkbox', function (ev) {
+
+                        var checkboxWrap = ev.delegateTarget;
+
+
+
+                        $(this).tabActive2({
+
+                            className: 'checked',
+
+                            box: checkboxWrap,
+
+                            type: 3,
+
+                            inFn: function (target) {
+
+                                target.find('input[type="checkbox"]').prop(
+
+                                    'checked', true)
+
+                            },
+
+                            outFn: function (target) {
+
+                                target.find('input[type="checkbox"]').prop(
+
+                                    'checked', false)
+
+                            }
+
+                        });
+
+                    })
+
+                });
+
+            },
+
+            initRadio: function (el) {
+
+                var radioBoxs = el ? $(el) : this.dom.find('.mo-radio-wrap');
+
+                $(radioBoxs).each(function (i, e) {
+
+                    $(e).find('.mo-radio').eq(0).addClass('checked').find('input[type="radio"]').prop("checked",true)
+
+
+
+                    $(e).on('click.radio', '.mo-radio', function (ev) {
+
+                        var radioWrap = ev.delegateTarget;
+
+
+
+                        $(this).tabActive2({
+
+                            className: 'checked',
+
+                            box: radioWrap,
+
+                            type: 2,
+
+                            inFn: function (target) {
+
+                                // console.log(target.find('input[type="radio"]'));
+
+                                target.find('input[type="radio"]').prop("checked",true);
+
+                            }
+
+                        });
+
+                    })
+
+                });
+
+            },
+
+            initSelectInput: function (el) {
+
+                var _self = this,
+
+                    selectInputBoxs = el ? $(el) : this.dom.find('.mo-select-wrap');
+
+
+
+                $(selectInputBoxs).each(function (i, e) {
+
+                    var selectInpt = $(e).find('select'),
+
+                        fakeSelect;
+
+                    // console.log($('.agent-mobile'));
+
+                    if ($('.agent-mobile').length) {
+
+
+
+                        selectInpt.css({
+
+                            display: 'block',
+
+                            position: 'absolute',
+
+                            top: 0,
+
+                            width: '100%',
+
+                            height: '100%',
+
+                            opacity: 0
+
+                        });
+
+                        selectInpt.on('change', function () {
+
+                            // console.log('change', $(this).value);
+
+                            $(this).closest('.mo-select')
+
+                                .find('.mo-option-selected')
+
+                                .text($(this).children('option:selected').val());
+
+                        })
+
+                    } else {
+
+
+
+                        selectInpt.hide();
+
+                    }
+
+                    fakeSelect = _self.setSelectInputDom(selectInpt);
+
+
+
+                    $(fakeSelect).insertBefore(selectInpt);
+
+                });
+
+            },
+
+            getSelectInputInfor: function (el) {
+
+
+
+                var result = {},
+
+                    options = $(el).find('option'),
+
+                    optionTexts = $.map(options, function (e, i) {
+
+                        return $(e).text();
+
+                    }),
+
+
+
+                    selectOption = options.filter(':selected');
+
+
+
+                result.optionTexts = optionTexts;
+
+                result.selectOption = selectOption;
+
+                return result;
+
+            },
+
+            setSelectInputDom: function (el) {
+
+                var _self = this,
+
+                    options = $(el).find('option'),
+
+                    fakeSelect,
+
+                    _fakeSelect,
+
+                    optionTexts;
+
+
+
+                _fakeSelect = '<div class="mo-fakeSelect">';
+
+                _fakeSelect += '<div class="mo-option-selected">';
+
+                _fakeSelect += options.filter(':selected').text();
+
+                _fakeSelect += '</div>';
+
+                _fakeSelect += '<div class="mo-fakeoptions"></div>';
+
+                _fakeSelect += '</div>';
+
+
+
+                fakeSelect = $(_fakeSelect);
+
+
+
+                optionTexts = $.map(options, function (e, i) {
+
+                    var text = $(e).text(),
+
+                        fakeoption;
+
+
+
+                    fakeoption = $('<span class="mo-fakeoption">' + text + '</span>')
+
+                        .data('realOption', e)
+
+                        .data('realSelect', el);
+
+
+
+                    $(e).data('fakeOption', fakeoption)
+
+                        .data('fakeSelect', fakeSelect);
+
+
+
+                    fakeoption.appendTo(fakeSelect.find('.mo-fakeoptions'));
+
+                    return text;
+
+                });
+
+
+
+                fakeSelect.on('click.select', '.mo-fakeoption', function (ev) {
+
+                    var selectWrap = ev.delegateTarget;
+
+                    var fakeSelect = $(this).closest(".mo-fakeSelect");
+
+                    var realOption = $(this).data('realOption');
+
+                    $(realOption).prop('selected', true).siblings('option').prop('selected',
+
+                        false);
+
+                    if (fakeSelect.find('.mo-fakeoptions:visible')[0]) {
+
+
+
+                        fakeSelect.find('.mo-fakeoptions').slideUp();
+
+                    }
+
+                    _self.selectChange(el)
+
+                    return false;
+
+                });
+
+                fakeSelect.on('click.onOff', '.mo-option-selected', function () {
+
+                    var fakeSelect = $(this).closest(".mo-fakeSelect");
+
+                    if (fakeSelect.find('.mo-fakeoptions:visible')[0]) {
+
+
+
+                        fakeSelect.find('.mo-fakeoptions').slideUp();
+
+                    } else {
+
+                        if ($(".mo-fakeoptions").height() + ($(".mo-fakeSelect").offset().top -
+
+                                $('body').scrollTop()) >=
+
+                            ($(window).height() - 58)) {
+
+                            $(".mo-fakeSelect").attr("data-optionpos", "top");
+
+                        } else {
+
+                            $(".mo-fakeSelect").attr("data-optionpos", "bottom");
+
+                        }
+
+                        fakeSelect.find('.mo-fakeoptions').slideDown();
+
+                    };
+
+
+
+                    $('body').off('click.closeSelect').on('click.closeSelect', function () {
+
+                        fakeSelect.find('.mo-fakeoptions').slideUp();
+
+                    });
+
+                    return false;
+
+                });
+
+
+
+                return fakeSelect;
+
+            },
+
+            selectChange: function (el) {
+
+                var selectOption = $(el).find('option:selected');
+
+                fakeSelect = selectOption.data('fakeSelect');
+
+
+
+                $(fakeSelect).find('.mo-option-selected').text(selectOption.text());
+
+            }
+
+        };
+
+
+
+        // 依赖 MOFORM
+
+        var MOFORMC = {
+
+            rightEv: function () {},
+
+            endCheck: function (allOk) {
+
+                if (allOk) {
+
+                    this.rightEv();
+
+                } else {
+
+
+
+                }
+
+            },
+
+            initCheckRule: function (rulesInfor) {
+
+                var _self = this;
+
+
+
+                $.each(rulesInfor, function (i, v) {
+
+                    var rules = v.rules,
+
+                        checkInput = _self.dom.find('input[data-rules="' + v.identifier + '"]');
+
+                    if (typeof checkInput == 'undefined' || checkInput.length == 0) return;
+
+
+
+                    $(checkInput).each(function (j, e) {
+
+
+
+                        var _input = e,
+
+                            isOk, errorPrompt;
+
+                        $(e).on('blur.check', function () {
+
+
+
+                            $.each(rules, function (k, r) {
+
+                                isOk = _self.inputRunCheck(_input, r);
+
+                                if (isOk && $(_input).attr('data-notempty') == 1) {
+
+                                    isOk = _self.inputRunCheck(_input, {
+
+                                        rule: 'notempty',
+
+                                        prompt: '该项不能为空'
+
+                                    });
+
+                                }
+
+                                if (isOk) {
+
+
+
+                                } else {
+
+
+
+                                    errorPrompt = v.prompt;
+
+                                    return false;
+
+                                }
+
+
+
+                            });
+
+                            _self.setInputMes(_input, errorPrompt, isOk);
+
+                        })
+
+                    });
+
+                });
+
+                this.rulesInfor = rulesInfor;
+
+            },
+
+            inputRunCheck: function (dom, ruleInfor) {
+
+                return this.inputCheckMethod[ruleInfor.rule](dom, ruleInfor);
+
+            },
+
+            inputCheckMethod: {
+
+                regExpMethods: {
+
+                    email: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+
+                    number: /^$|^(\-|\+)?[0-9]+(\.[0-9]+)?$/,
+
+                    text: /^$|^\S+$/,
+
+                    // text: /^$|^[\u4E00-\u9FA5A-Za-z]+$/,
+
+                    notempty: /\S/,
+
+                    numcode: /^[0-9]{4}$/
+
+                },
+
+                regExps: function (input, infor) {
+
+
+
+                    var checkType = infor.rule,
+
+                        val = $(input).val().trim(),
+
+                        formItem = $(input).closest('.mo-input-item'),
+
+                        tipBox = formItem.find('.mo-input-tip'),
+
+                        isOk = true;
+
+
+
+                    if ((this.regExpMethods[checkType].test(val))) {
+
+
+
+                        if (formItem.hasClass('error')) {
+
+
+
+                            formItem.removeClass('error').attr('data-' + checkType + '', 'true');
+
+                            tipBox.text('');
+
+                        }
+
+                        isOk = true;
+
+                    } else {
+
+                        // console.log(this.regExpMethods[checkType], val, this.regExpMethods[checkType].test(val));
+
+
+
+                        formItem.addClass('error').attr('data-' + checkType + '', 'false');
+
+                        tipBox.text(infor.prompt);
+
+                        isOk = false;
+
+                    }
+
+                    return isOk;
+
+                },
+
+                notempty: function (input, infor) {
+
+                    // console.log($(input).val());
+
+                    return this.regExps(input, infor)
+
+                },
+
+                number: function (input, infor) {
+
+
+
+                    return this.regExps(input, infor)
+
+                },
+
+                email: function (input, infor) {
+
+
+
+                    return this.regExps(input, infor)
+
+                },
+
+                text: function (input, infor) {
+
+
+
+                    return this.regExps(input, infor)
+
+                },
+
+                numcode: function (input, infor) {
+
+
+
+                    return this.regExps(input, infor)
+
+                }
+
+            },
+
+            runCheck: function (rightEv, errorEv) {
+
+                var _self = this,
+
+                    allOk = true,
+
+                    fistError;
+
+                $.each(this.rulesInfor, function (i, v) {
+
+                    var rules = v.rules,
+
+                        checkInput = _self.dom.find('input[data-rules="' + v.identifier + '"]');
+
+                    if (typeof checkInput == 'undefined' || checkInput.length == 0) return;
+
+
+
+                    $(checkInput).each(function (j, e) {
+
+
+
+                        var _input = e,
+
+                            isOk, errorPrompt;
+
+                        $.each(rules, function (k, r) {
+
+                            isOk = _self.inputRunCheck(_input, r);
+
+                            if (isOk && $(_input).attr('data-notempty') == 1) {
+
+                                isOk = _self.inputRunCheck(_input, {
+
+                                    rule: 'notempty',
+
+                                    prompt: '该项不能为空'
+
+                                });
+
+                            }
+
+                            if (isOk) {
+
+
+
+                            } else {
+
+
+
+                                errorPrompt = v.prompt;
+
+                                if (allOk) {
+
+                                    allOk = false;
+
+                                    fistError = v
+
+                                }
+
+                                return false;
+
+                            }
+
+
+
+                        });
+
+                        _self.setInputMes(_input, errorPrompt, isOk);
+
+                    });
+
+                    _self.endCheck(allOk);
+
+                });
+
+                if (allOk) {
+
+                    rightEv && rightEv()
+
+                } else {
+
+                    errorEv && errorEv()
+
+                }
+
+            },
+
+            setInputMes(input, errorPrompt, isOk) {
+
+                if (isOk) {
+
+
+
+                } else {}
+
+            }
+
+        };
+
+
+
+        $.extend(true, MOFORM.prototype, MOFORMC);
+
+
+
+        return MOFORM;
+
+    })();
+
+
+
+    function setCodeImg() {
+
+        $('#codeImg').attr('src', function () {
+
+            return $(this).data('src') + '?' + (+new Date());
+
+        }).show();
+
+    }
+
+    $(function () {
+
+        var moForm = new MOFORM('.mo-form').initForm(),
+
+            formTip = $('#formTip'),
+
+            formmask;
+
+
+
+        moForm.initCheckRule([{
+
+            identifier: 'email',
+
+            rules: [{
+
+                rule: 'email',
+
+                prompt: '请输入邮箱'
+
+            }],
+
+        }, {
+
+            identifier: 'string',
+
+            rules: [{
+
+                rule: 'text',
+
+                prompt: '此项不能为数字、以及非法字符'
+
+            }]
+
+        }, {
+
+            identifier: 'number',
+
+            rules: [{
+
+                rule: 'number',
+
+                prompt: '请输入数字'
+
+            }]
+
+        }, {
+
+            identifier: 'numcode',
+
+            rules: [{
+
+                rule: 'numcode',
+
+                prompt: '请输入正确的验证码'
+
+            }]
+
+        }]);
+
+
+
+        var submitBtn = $('#mo-submit input');
+
+        setCodeImg();
+
+        $('#codeImg').click(function () {
+
+            setCodeImg();
+
+        });
+
+
+
+    })
+
+</script>
+        <div class="npagePage pageEditor formPage">
+
+
+            <div class="content">
+
+                <div class="mFormPage module">
+
+                    <div class="module_container">
+
+                        <div class="container_header wow">
+
+                            <p class="title">免费领取</p>
+
+
+                            <p class="subtitle">现在提交，有机会获取免费试用装！</p>
+
+
+                        </div>
+
+                        <div class="container_content">
+
+                            <div class="content_wrapper">
+
+                                <div class="postbody"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="formInputList">
+
+                    <form class="mo-form" id="pageForm">
+                        <input type="hidden" name="pageid" value="157304">
+                        <ul class="mo-form-list">
+                        {% csrf_token %}
+                                    <li class="mo-form-item">
+                                        <div class="mo-input-items mo-type-text  _mo_requiredInput">
+                                            <div class="mo-input-item mo-type-text ">
+                                                <div class="mo-input-title">姓名</div>
+                                                <div class="mo-text-wrap mo-input-wrap">
+                                                    <div class="mo-text">
+                                                        <input type="text"
+                                                            name="name"
+                                                            data-rules="string"
+                                                            data-notempty="1"
+                                                            class="text"
+                                                               maxlength="4"
+                                                            placeholder="您的姓名">
+                                                    </div>
+                                                    <div class="mo-input-tip mo-errorMes">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="mo-form-item">
+                                        <div class="mo-input-items">
+                                            <div class="mo-input-item mo-type-text  _mo_requiredInput">
+                                                <div class="mo-input-title">联系方式</div>
+                                                <div class="mo-text-wrap mo-input-wrap">
+                                                    <div class="mo-text">
+                                                        <input type="tel"
+                                                            name="telephone"
+                                                            data-rules="string"
+                                                            data-notempty="1"
+                                                               maxlength="11"
+                                                            class="text"
+                                                            placeholder="手机号码">
+                                                    </div>
+                                                    <div class="mo-input-tip mo-errorMes">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                     <li class="mo-form-item">
+                                        <div class="mo-input-items">
+                                            <div class="mo-input-item">
+                                                <div class="mo-input-title">感兴趣的产品</div>
+                                                <div class="mo-select-wrap mo-input-wrap">
+                                                    <div class="mo-select">
+                                                        <select name="gift">
+                                                            {% for gift in gifts %}
+                                                            <option value="{{ gift.name }}">{{ gift.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                     <li class="mo-form-item">
+                                        <div class="mo-input-items">
+                                            <div class="mo-input-item">
+                                                <div class="mo-input-title">宝宝年龄</div>
+                                                <div class="mo-radio-wrap mo-input-wrap">
+                                                    <div class="mo-radio">
+                                                        <input type="radio" name="baby_age" value="1岁" id="">
+                                                        <span class="mo-inputName">1岁</span>
+                                                    </div>
+                                                    <div class="mo-radio">
+                                                        <input type="radio" name="baby_age" value="2岁" id="">
+                                                        <span class="mo-inputName">2岁</span>
+                                                    </div>
+                                                    <div class="mo-radio">
+                                                        <input type="radio" name="baby_age" value="3岁" id="">
+                                                        <span class="mo-inputName">3岁</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="mo-form-item">
+                                        <div class="mo-input-items mo-type-text  _mo_requiredInput">
+                                            <div class="mo-input-item">
+                                                <div class="mo-input-title">留言内容</div>
+                                                <div class="mo-textarea-wrap mo-input-wrap">
+                                                    <div class="mo-textarea">
+                                                        <textarea name="message" id="" maxlength="258" cols="30" rows="10" placeholder=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                            <li class="mo-form-item">
+                                <div class="mo-input-items">
+                                    <div class="mo-input-item mo-type-text _mo_requiredInput">
+                                        <div class="mo-input-title">验证码</div>
+                                        <div class="mo-text-wrap mo-input-wrap">
+                                            <div class="mo-text mo-code">
+                                                <input type="text" name="img_captcha" data-rules="string" placeholder="请输入验证码" autocomplete="off" id="verification">
+                                                <img  class="img-captcha" src="{% url 'company:img_captcha' %}" style="display: inline;">
+                                            </div>
+                                            <div class="mo-input-tip mo-errorMes">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mo-form-item">
+
+                                <div class="mo-input-items">
+
+                                    <div class="mo-input-item">
+
+                                        <div class="mo-input-title"></div>
+
+                                        <div class="mo-button-wrap mo-input-wrap">
+
+                                            <div id="mo-submit" class="mo-button">
+
+                                                <input type="button" id="submit" name="submit" value="提交">
+
+                                                <div id="formTip" class="formTip">
+
+                                                    <i class="icon fa fa-spinner" aria-hidden="true"></i>
+
+                                                    <span class="mes"></span>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                        </ul>
+
+                    </form>
+
+                </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    {% include 'company/footer.html' %}
+
+    </body>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+
+{% block title %}
+    视频中心
+{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+        {% include 'company/m/header.html' %}
+
+        <div class="perch-box">
+        </div>
+        <div class="npagePage">
+            <div id="banner">
+                <div style="background-image:url({% static 'm/images/1525254393978.jpg' %});"></div>
+            </div>
+            <div class="content">
+                <div class="mlist videom module">
+                    <div class="bgmask"></div>
+                    <div class="m_container">
+                        <div class="content">
+                            <div class="wrapper">
+                                <div class="more_wrap"><a href="{% url 'company:video_list' %}"
+                                                          class="more wow" style="animation-delay:.5s">更多<i
+                                        class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                                <ul class="content_list clearfix">
+                                    {% for video in videos.object_list %}
+                                    <li id="item_block_{{ forloop.counter0 }}" class="item_block wow">
+                                        <a href="/media/{{ video.video }}"
+
+                                           class="video-box item_box">
+                                            <div
+                                                 class="item_img" target="_blank">
+                                                <img src="/media/{{ video.thumbnail}}"/>
+                                                <div class="item_mask"></div>
+                                            </div>
+                                            <div class="item_wrapper clearfix">
+                                                <div class="item_info clearfix">
+                                                    <div class="text_wrap">
+                                                        <p class="title ellipsis">{{ video.title}}</p>
+                                                        <p class="subtitle ellipsis">来源：{{ video.get_source_display }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="item_des description">
+                                                    <p>{{ video.desc|slice:40}}...</p>
+                                                    <p><br/></p>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div class="item_tags clearfix">
+                                            <i class="fa fa-tags"></i></div>
+                                    </li>
+                                    {% endfor %}
+
+
+                                </ul>
+                                <a href="{% url 'company:video_list' %}" class="more wow"
+                                   style="animation-delay:.5s">更多<i class="fa fa-angle-right"
+                                                                    aria-hidden="true"></i></a>
+                            </div>
+                            <div id="pages">
+                               {% for page in videos.pages %}
+                                    {% if page %}
+                                        {% ifequal page videos.number %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="active">{{ page }}</a>
+                                        {% else %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="">{{ page }}</a>
+                                        {% endifequal %}
+                                    {% else %}
+                                        <a href="####"
+                                           class="">...</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+
+
+
+    {% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+    </body>
+{% endblock %}

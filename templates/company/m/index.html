@@ -1,0 +1,443 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    首页
+{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="indexMain"></script>
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script src="{% static 'js/layer.js' %}"></script>
+    <script src="{% static 'js/apply.js' %}"></script>
+
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+
+        {% include 'company/m/header.html' %}
+        <div class="content indexPage">
+            <div class="mm-head"></div>
+            <div id="mm-slider">
+                <ul class="slider">
+                    {% for banner in banners %}
+                    <li><a target="_blank" {% if banner.link_to %}
+                    href="{{ banner.link_to}}"{% else %}href="####"
+                    {% endif %}  >
+                        <div class="slider-img">
+                            <img src="/media/{{ banner.m_pic }}"/>
+                        </div>
+                        <div class="slider-info">
+                            <p class="title"></p>
+                        </div>
+                    </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="mlist ad01 module">
+                <div class="bgmask"></div>
+                <div class="m_container">
+                    <div class="container_header wow animated ">
+                        <p class="title">广告</p>
+                    </div>
+                    <div class="content">
+                        <div class="wrapper">
+                            <ul class="content_list">
+                                {% for advert in adverts %}
+                                <li id="item_block_{{ forloop.counter0 }}" class="item_block wow " style="animation-delay:.{{ forloop.counter0 }}s">
+
+                                    <a {% if advert.link_to %} href="{{ advert.link_to}}"{% else %}href="####"{% endif %} target="_blank"
+                                       class="item_img" title="{{ advert.title }}">
+                                        <img src="/media/{{ advert.pic }}"/>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="mlist project module">
+                <div class="bgmask"></div>
+                <div class="m_container">
+                    <div class="container_header wow animated ">
+                        <p class="title">产品展示</p>
+                        <p class="subtitle">正品保证 / 绿色天然 / 植物配方 / 育婴师指导</p>
+                    </div>
+                    <div class="category"><a href="{% url 'company:goods_list_all' %}" class="active">全部</a>
+                        {% for goods_category in goods_categories %}
+                        <a href="{% url 'company:goods_list' goods_category.name %}">{{ goods_category.name }}</a>
+                        {% endfor %}
+
+
+                    </div>
+                    <div class="content">
+                        <div class="wrapper">
+                            <ul class="content_list clearfix">
+                                {% for good in goods %}
+                                <li id="item_block_{{ forloop.counter0 }}" class="item_block wow">
+                                    <a href="{% url 'company:goods_detail' good.uid %}" class="item_box">
+                                        <div class="item_img" target="_blank">
+                                            <img src="/media/{{ good.thumbnail }}"/>
+                                            <div class="item_mask"></div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <div class="text_wrap">
+                                                    <p class="title ellipsis">{{ good.name }}</p>
+                                                    <p class="subtitle ellipsis"></p>
+                                                </div>
+                                                <p class="date_wrap">
+                                                    <span class="year">{{ good.create_time|date:'Y' }}</span>
+                                                    <span class="md">{{ good.create_time|date:'m-d' }}</span>
+                                                </p>
+                                            </div>
+                                            <div class="item_des">
+                                                <p class="description">{{ good.desc|slice:40}}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'company:goods_detail' good.uid %}" class="details">详情<i
+                                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <div class="item_tags clearfix"><i class="fa fa-tags"></i><a
+                                            href="{% url 'company:goods_list' good.category.name %}">类别：{{ good.category.name }}</a>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <a href="{% url 'company:goods_list_all' %}" class="more wow"
+                               style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="mlist videom module">
+                <div class="bgmask"></div>
+                <div class="m_container">
+                    <div class="container_header wow animated ">
+                        <p class="title">视频中心</p>
+                        <p class="subtitle">安姐在线教学，科普育儿知识</p>
+                    </div>
+                    <div class="category"><a href="{% url 'company:video_list' %}" class="active">全部</a>
+                    </div>
+                    <div class="content">
+                        <div class="wrapper">
+                            <div class="more_wrap"><a href="{% url 'company:video_list' %}"
+                                                      class="more wow"
+                                                      style="animation-delay:.5s">更多<i class="fa fa-angle-right"
+                                                                                       aria-hidden="true"></i></a></div>
+                            <ul class="content_list clearfix">
+                                {% for video in videos %}
+                                <li id="item_block_{{ forloop.counter0 }}" class="item_block wow">
+                                    <a href="/media/{{ video.video }}"
+                                       data-href="/media/{{ video.video }}"
+                                       class="video-box item_box">
+                                        <div href="/media/{{ video.video }}"
+                                             class="item_img" target="_blank">
+                                            <img src="/media/{{ video.thumbnail }}"/>
+                                            <div class="item_mask"></div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <div class="text_wrap">
+                                                    <p class="title ellipsis">{{ video.title}}</p>
+                                                    <p class="subtitle ellipsis">来源：{{ video.get_source_display }}</p>
+                                                </div>
+
+                                            </div>
+                                            <div class="item_des description">
+                                                {{video.desc}}
+                                                <p><br/></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="/media/{{ video.video }}"
+                                       class="details">详情
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="item_tags clearfix">
+                                        <i class="fa fa-tags"></i></div>
+                                </li>
+                                {% endfor %}
+
+
+                            </ul>
+                            <a href="{% url 'company:video_list' %}" class="more wow"
+                               style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="mlist service module">
+                <div class="bgmask"></div>
+                <div class="m_container">
+                    <div class="container_header wow animated ">
+                        <p class="title">实力保证</p>
+                        <p class="subtitle">全国十大畅销品牌，全国消费者放心满意</p>
+                    </div>
+                    <div class="category"><a href="{% url 'company:strength_list' %}" class="active">全部</a>
+                    </div>
+                    <div class="content">
+                        <div class="wrapper">
+                            <ul class="content_list clearfix ser-slider">
+                                {% for strength in strength %}
+                                <li id="item_block_{{ forloop.counter0 }}" class="item_block wow">
+                                    <a href="{% url 'company:strength_detail' strength.id %}" class="item_box">
+                                        <div href="{% url 'company:strength_detail' strength.id %}" class="item_img"
+                                             target="_blank">
+                                            <img src="/media/{{ strength.thumbnail }}"/>
+                                            <div class="item_mask"></div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <p class="title ellipsis">{{ strength.title }}</p>
+                                                <p class="subtitle ellipsis"></p>
+                                            </div>
+                                            <p class="date_wrap">
+                                                <span class="year">{{ strength.create_time|date:'Y' }}</span>
+                                                <span class="md">{{ strength.create_time|date:'m-d' }}</span>
+                                            </p>
+                                            <div class="item_des">
+                                                <p class="description">{{ strength.desc|slice:40}} ...</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'company:strength_detail' strength.id %}" class="details">详情<i
+                                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <div class="item_tags clearfix"><i class="fa fa-tags"></i></div>
+
+                                </li>
+                                {% endfor %}
+
+
+                            </ul>
+                            <a href="{% url 'company:strength_list'%}" class="more wow"
+                               style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="mcustomize module bgShow bgParallax horizontal tril"
+                 style=" background-image:url({% static 'm/images/1523930363536.png' %});">
+                <div class="bgmask"></div>
+                <div class="module_container">
+                    <div class="container_content">
+                        <div class="contentbody">
+                            <div class="wrapper">
+                                <div class="header wow"><p class="title">为什么选择帮宝？</p></div>
+                                <div class="description wow"><p style="line-height: 2em;"><span
+                                        style="font-size: 14px;"></span></p>
+                                    <p>专业解决宝宝皮肤红疹，红屁股，新生儿拉肚子，皮肤湿疹等，</p>
+                                    <p>做出专业解答</p>
+                                    <p style="line-height: 2em;"><span style="font-size: 14px;"></span><br/></p>
+                                    <p style="line-height: 3em;">◎ &nbsp; 针对新生儿皮肤问题，做出专业应对方案；</p>
+                                    <p style="line-height: 3em;">◎ &nbsp; 根据孩子年龄、日常生活情况、需求，量身定制最适合的应对方案。</p>
+                                    <p style="line-height: 3em;">◎ &nbsp; 全国十大畅销品牌</p>
+                                    <p style="line-height: 3em;">◎ &nbsp; 全国消费者放心满意企业</p>
+                                    <p style="line-height: 3em;">◎ &nbsp; 解决100000+宝妈的烦恼</p>
+                                    <p><br/></p>
+                                    {% if company_function.page_form_state == 'ON' %}
+                                    <p><a href="{% url 'company:apply' %}" target="_blank"
+                                          title="MORE" textvalue="免费领取试用装">免费领取试用装</a><br/></p>
+                                        {% else %}
+                                        <p><a href="####" target="_self"
+                                          title="MORE" textvalue="联系我们">联系我们</a><br/></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mediabody wow"><a target="_blank"
+                                                      href="{% url 'company:about' %}"><img
+                                src="{% static 'm/images/1523608567921.png' %}"/></a></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+ <div class="mlist news module">
+                <div class="bgmask"></div>
+                <div class="m_container">
+                    <div class="container_header wow animated ">
+                        <p class="title">新闻</p>
+                        <p class="subtitle">News</p>
+                    </div>
+                    <div class="category"><a href="{% url 'company:news_list_all' %}" class="active">全部</a></div>
+                    <div class="content">
+                        <div class="wrapper">
+                            <div class="more_wrap"><a href="{% url 'company:news_list_all' %}"
+                                                      class="more wow"
+                                                      style="animation-delay:.5s">更多<i class="fa fa-angle-right"
+                                                                                       aria-hidden="true"></i></a></div>
+                            <ul class="content_list clearfix">
+                                {% for news in news %}
+                                <li id="item_block_{{ forloop.counter0 }}" class="item_block wow">
+                                    <a href="{% url 'company:news_detail' news.uid %}" class="item_box">
+                                        <div href="{% url 'company:news_detail' news.uid %}" class="item_img"
+                                             target="_blank">
+                                            <img src="/media/{{ news.thumbnail }}"/>
+                                            <div class="item_mask"></div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <p class="title ellipsis">{{ news.title}}</p>
+                                                <p class="subtitle ellipsis"></p>
+                                            </div>
+                                            <p class="date_wrap">
+                                                <span class="year">{{ news.create_time|date:'Y' }}</span>
+                                                <span class="md">{{ news.create_time|date:'m-d' }}</span>
+                                            </p>
+                                            <div class="item_des">
+                                                <p class="description">
+                                                    {{ news.desc|slice:40}} ...</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'company:news_detail' news.uid %}" class="details">详情<i
+                                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                                </li>
+                                {% endfor %}
+
+
+                            </ul>
+                            <a href="{% url 'company:news_list_all' %}" class="more wow"
+                               style="animation-delay:.5s">更多<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="mcounter module bgShow" style=" background-image:url({% static 'm/images/1524023311218.png' %});">
+                <div class="bgmask"></div>
+                <div class="module_container">
+                    <div class="container_content">
+                        <ul class="content_list">
+                            <li>
+                                <div><p class="number"><span class="counterDX"
+                                                             data-counter-value="100,000">100,000</span><span
+                                        class="unit">+</span></p>
+                                    <p class="title">已帮助过的宝宝</p></div>
+                            </li>
+                            <li>
+                                <div><p class="number"><span class="counterDX" data-counter-value="326">326</span><span
+                                        class="unit">+</span></p>
+                                    <p class="title">遍布国家及省级市区</p></div>
+                            </li>
+                            <li>
+                                <div><p class="number"><span class="counterDX"
+                                                             data-counter-value="100">100</span><span
+                                        class="unit">+</span></p>
+                                    <p class="title">高级育婴师</p></div>
+                            </li>
+                            <li>
+                                <div><p class="number"><span class="counterDX" data-counter-value="100">100</span><span
+                                        class="unit">%</span></p>
+                                    <p class="title">产品纯天然</p></div>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mlist imagelink module">
+                <div class="bgmask"></div>
+                <div class="m_container">
+                    <div class="container_header wow animated ">
+                        <p class="title">战略合作</p>
+                        <p class="subtitle">与多家机构进行战略合作</p>
+                    </div>
+                    <div class="category"><a href="{% url 'company:strength_list' %}" class="active">全部</a>
+                    </div>
+                    <div class="content">
+                        <div class="wrapper">
+                            <ul class="content_list" style="width:960px">
+                                {% for link in links %}
+                                <li id="item_block_0" class="item_block wow" style="animation-delay:.0s">
+                                    <a href="{{ link.url}}" target="_blank" class="item_img" title="Cinder">
+                                        <img src="/media/{{ link.pic }}"/>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div id="mcontact" class="mlist module">
+
+                <div class="container_header">
+                    <p class="title">免费咨询</p>
+                    <p class="subtitle">联系安姐，了解更多育婴知识</p>
+                </div>
+
+                <div class="contactlist plr10">
+                    <div class="contactinfo">
+                        <h3 class="name">{{ site_name }}</h3>
+                        <p class="add"><span>地址：</span>{{ site_address}}</p>
+                        <p class="zip"><span>邮编：</span>{{ site_zip }}</p>
+                        <p class="tel"><span>电话：</span><a href="tel:<a href='tel:{{ site_phone }}'>{{ site_phone }}</a>"><a
+                                href='tel:{{ site_phone }}'>{{ site_phone }}</a></a></p>
+                        <p class="mobile"><span>手机：</span><a href="tel:<a href='tel:{{ site_telephone }}'>{{ site_telephone }}</a>"><a
+                                href='tel:{{ site_telephone }}'>{{ site_telephone }}</a></a></p>
+                        <p class="fax"><span>传真：</span>{{ site_fax }}</p>
+                        <p class="email"><span>邮箱：</span>{{ site_email}}</p>
+                        <div class="share_app"><a class="fl" target="_blank" href="http://weibo.com/web"><i
+                                class="fa fa-weibo"></i></a><a class="fl" target="_blank"
+                                                               href="mqqwpa://im/chat?chat_type=wpa&uin=40080000&version=1&src_type=web&web_src=qq.com"><i
+                                class="fa fa-weixin"></i></a> <a id="mpbtn" class="fl" target="_blank"
+                                                             href="/media/{{ site_weixin }}"><i
+                                class="fa fa-qq"></i></a></div>
+                    </div>
+                </div>
+                {% if company_function.index_form_state == 'ON' %}
+                <div id="contactform" class="contactform">
+                    <form id="indexForm">
+                        <p class="contactform_name">
+                            <input type="text" class="inputtxt" name="name" placeholder="姓名" autocomplete="off"/>
+                        </p>
+                        <p class="contactform_eml">
+                            <input type="email" class="inputtxt" name="email" placeholder="邮箱" autocomplete="off"/>
+                        </p>
+                        <p class="contactform_tel">
+                            <input type="tel" class="inputtxt" name="telephone" placeholder="电话" autocomplete="off"/>
+                        </p>
+                        <p class="contactform_content">
+                            <textarea class="inputtxt" name="message" placeholder="内容" autocomplete="off"></textarea>
+                        </p>
+                        {% csrf_token %}
+                        <p class="contactform_submit">
+                            <input class="inputtxt submit" type="button" id="IndexSubmit" value="提交"/>
+                        </p>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            <!--联系-->
+        </div>
+
+
+
+
+{% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+    </body>
+
+{% endblock %}

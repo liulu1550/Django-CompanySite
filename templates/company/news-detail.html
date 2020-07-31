@@ -1,0 +1,144 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %}{{ news.title }}{% endblock %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="postMain"></script>
+{% endblock %}
+{% block body %}
+<body id="longPage" class="gh0  longPage  bodylistpost bodynews cn" data-uid="8390" data-form="5f11489195cf5">
+
+<div class="bodyMask"></div>
+
+{% include 'company/header.html' %}
+<div id="sitecontent" class="ff_sitecontent">
+    <div class="npagePage post ff_postPage ">
+        <div id="pageTarget" class="ff_pageTarget module">
+            <div class="module_container">
+                <div class="container_target wow">您的位置：<a href="{% url 'company:index' %}">首页</a><i
+                        class="fa fa-angle-right"></i><a>新闻</a><i class="fa fa-angle-right"></i><a
+                        href="{% url 'company:news_list' news.category.name %}">{{ news.category.name }}</a></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="mlistpost news module">
+                <div class="module_container">
+                    <div class="container_content">
+                        <div class="content_wrapper">
+                            <div id="postWrapper">
+                                <div class="postContent">
+                                    <div class="postInfo">
+                                        <div class="mainInfor">
+                                            <p class="title">{{ news.title}}</p>
+                                            <p class="usetdate">
+                                                {{news.update_time|date:'Y-m-d'}}
+                                            </p>
+                                        </div>
+                                        <div class="description">{{news.desc}}
+                                        </div>
+                                    </div>
+                                    <div class="postbody">
+                                        {{ news_body.body|safe }}
+                                    </div>
+                                    <div class="conTabBtn tabBtn">
+                                        {% if has_prev %}
+                                        <a href="{% url 'company:news_detail' news_prev.uid %}" class="post-prev">
+                                            <div class="img-wrap">
+                                                <div style="background-image: url(/media/{{ news_prev.thumbnail }})"></div>
+                                                <img src="/media/{{ news_prev.thumbnail }}" alt="">
+                                            </div>
+                                            <div class="infor-wrap">
+                                                <span class="title">{{ news_prev.title}}</span>
+                                                <span class="subtitle"></span>
+                                            </div>
+                                            <i class="details"></i>
+                                            <div class="tabMask"></div>
+                                        </a>
+                                        {% endif %}
+                                        {% if has_next %}
+                                            <a href="{% url 'company:news_detail' news_next.uid %}" class="post-next">
+                                            <div class="img-wrap">
+                                                <div style="background-image: url(/media/{{ news_next.thumbnail }})"></div>
+                                                <img src="/media/{{ news_next.thumbnail }}" alt="">
+                                            </div>
+                                            <div class="infor-wrap">
+                                                <span class="title">{{ news_next.title}}</span>
+                                                <span class="subtitle"></span>
+                                            </div>
+                                            <i class="details"></i>
+                                            <div class="tabMask"></div>
+                                        </a>
+                                    {% endif %}
+
+                                    </div>
+                                </div>
+                                <div class="listWrap">
+                                    <div class="postInfo">
+                                        <p class="title">{{ news.title}}</p>
+                                        <p class="usetdate">
+                                            {{news.update_time|date:'Y-m-d'}}
+                                        </p>
+                                        <div class="description">{{news.desc}}
+                                        </div>
+                                    </div>
+                                    <div id="listContent" class="listContent_post">
+                                        <h3>相关内容</h3>
+
+                                        <div class="mlist type04">
+                                            <div class="content_wrapper">
+                                                <div class="content_list clearfix">
+                                                    {% for re_new in re_news %}
+                                                    <div id="item_block_{{ forloop.counter0 }}" class="item_block_{{ forloop.counter0 }} item_block wow"
+                                                         style="animation-delay:.{{ forloop.counter0 }}s">
+                                                        <div class="item_index">{{ forloop.counter0 }}</div>
+                                                        <a href="{% url 'company:news_detail' re_new.uid %}"
+                                                           class="item_box">
+                                                            <div href="{% url 'company:news_detail' re_new.uid %}"
+                                                                 class="item_img" target="_blank">
+                                                                <img src="/media/{{ re_new.thumbnail }}"/>
+                                                                <div class="item_mask"></div>
+                                                            </div>
+                                                            <div class="item_wrapper clearfix">
+                                                                <div class="item_info clearfix">
+                                                                    <p class="title ellipsis">{{ re_new.title}}</p>
+                                                                    <p class="subtitle ellipsis"></p>
+                                                                </div>
+                                                                <div class="item_des">
+                                                                    <p class="description">
+                                                                        {{ re_new.desc|slice:40}}
+                                                                        ...</p>
+                                                                </div>
+                                                                <span href="{% url 'company:news_detail' re_new.uid %}"
+                                                                      class="details hide">
+						MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+                                                            </div>
+                                                            <div class="item_index">{{ forloop.counter0 }}</div>
+                                                        </a>
+                                                    </div>
+                                                    {% endfor %}
+
+
+                                                </div>
+                                                <a href="" class="more wow" style="animation-delay:.5s">MORE<i
+                                                        class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'company/footer.html' %}
+
+</body>
+
+{% endblock %}

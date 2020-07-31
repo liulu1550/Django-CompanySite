@@ -1,0 +1,201 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %}{{ goods.name }}{% endblock %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="postMain"></script>
+{% endblock %}
+{% block head %}
+    <style>
+        .postbody img {
+            margin: 0 auto;
+            display: block
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <body id="longPage" class="gh0  longPage  bodylistpost bodyproject cn" data-uid="8390" data-form="5f114890d0ebe">
+
+    <div class="bodyMask"></div>
+    {% include 'company/header.html' %}
+    <div id="sitecontent" class="ff_sitecontent">
+        <div class="npagePage post ff_postPage ">
+            <div id="pageTarget" class="ff_pageTarget module">
+                <div class="module_container">
+                    <div class="container_target wow">您的位置：<a href="{% url 'company:index' %}">首页</a><i
+                            class="fa fa-angle-right"></i><a
+                            href="{% url 'company:goods_list_all' %}">产品中心</a><i
+                            class="fa fa-angle-right"></i><a
+                            href="{% url 'company:goods_list' goods.category.name %}">{{ goods.category.name }}</a></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="mlistpost project module">
+                    <div class="module_container">
+                        <div class="container_content">
+                            <div class="content_wrapper">
+                                <div id="postWrapper">
+
+                                    <div id="postSlider" class="postSlider mlist">
+                                        <div class="tab_content">
+                                            {% for goods_banner in goods_banners %}
+                                                <div class="item_block item_block_{{ forloop.counter0 }}">
+                                                    <div class="wrapper">
+                                                        <div class="item_img">
+                                                            <img src="/media/{{ goods_banner.pic }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+
+                                        </div>
+                                        <div class="tab_button">
+                                            {% for goods_banner in goods_banners %}
+                                                <div class="item_block_{{ forloop.counter0 }} item_block active"
+                                                     data-tab-index="{{ forloop.counter0 }}">
+                                                    <div class="wrapper">
+                                                        <div class="item_img">
+                                                            <img src="/media/{{ goods_banner.pic }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="postContent">
+                                        <div class="postInfo">
+                                            <div class="mainInfor">
+                                                <p class="title">{{ goods.name }}</p>
+                                                <p class="usetdate">
+                                                    <span class="year">{{ goods.create_time|date:'Y' }}</span><i
+                                                        class="time-connect">-</i><span
+                                                        class="m">{{ goods.create_time|date:'m' }}</span><i
+                                                        class="time-connect">-</i><span
+                                                        class="d">{{ goods.create_time|date:'d' }}</span>
+                                                </p>
+                                            </div>
+                                            <div class="description"><p>{{ goods.desc }} ...</p>
+                                                <p><br></p>
+                                                {% if goods.buy_link %}
+                                                    <p><a href="{{ goods.buy_link }}" target="_blank" title="立即选购"
+                                                          class="more">立即选购</a></p>
+                                                {% endif %}
+
+                                            </div>
+
+                                        </div>
+                                        <div class="postbody">
+                                            {{ goods_body.body|safe }}
+                                        </div>
+                                        <div class="conTabBtn tabBtn">
+                                            {% if has_prev %}
+                                            <a href="{% url 'company:goods_detail' goods_prev.uid %}"
+                                               class="post-prev">
+                                                <div class="img-wrap">
+                                                    <div style="background-image: url(/media/{{ goods_prev.thumbnail }})"></div>
+                                                    <img src="/media/{{ goods_prev.thumbnail }}" alt="">
+                                                </div>
+                                                <div class="infor-wrap">
+                                                    <span class="title">{{ goods_prev.name }}</span>
+                                                    <span class="subtitle"></span>
+                                                </div>
+                                                <i class="details"></i>
+                                                <div class="tabMask"></div>
+                                            </a>
+                                            {% endif %}
+                                        {% if has_next %}
+                                            <a href="{% url 'company:goods_detail' goods_next.uid %}"
+                                               class="post-next">
+                                                <div class="img-wrap">
+                                                    <div style="background-image: url(/media/{{ goods_next.thumbnail }})"></div>
+                                                    <img src="/media/{{ goods_next.thumbnail }}" alt="">
+                                                </div>
+                                                <div class="infor-wrap">
+                                                    <span class="title">{{ goods_next.name}}</span>
+                                                    <span class="subtitle">{{ goods_next.desc|slice:40}}...</span>
+                                                </div>
+                                                <i class="details"></i>
+                                                <div class="tabMask"></div>
+                                            </a>
+                                        {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="listWrap">
+                                        <div class="postInfo">
+                                            <p class="title">{{ goods.name }}</p>
+                                            <p class="usetdate">
+                                                {{goods.update_time}}
+                                            </p>
+                                            <div class="description"><p>{{ goods.desc|slice:40}} ...</p></div>
+                                        </div>
+                                        <div id="listContent" class="listContent_post">
+                                            <h3>相关内容</h3>
+                                            <div class="item_tags"><a
+                                                    href="{% url 'company:goods_list' goods.category.name %}"
+                                                    target="_blank">类别：{{ goods.category.name }}</a></div>
+                                            <div class="mlist type04">
+                                                <div class="content_wrapper">
+                                                    <div class="content_list clearfix">
+                                                        {% for re_good in re_goods %}
+                                                        <div id="item_block_{{ forloop.counter0 }}" class="item_block_{{ forloop.counter0 }} item_block wow"
+                                                             style="animation-delay:.{{ forloop.counter0 }}s">
+                                                            <div class="item_index">{{ forloop.counter0 }}</div>
+                                                            <a href="{% url 'company:goods_detail' re_good.uid %}"
+                                                               class="item_box">
+                                                                <div href="{% url 'company:goods_detail' re_good.uid %}"
+                                                                     class="item_img" target="_blank">
+                                                                    <img src="/media/{{ re_good.thumbnail }}"/>
+                                                                    <div class="item_mask"></div>
+                                                                </div>
+                                                                <div class="item_wrapper clearfix">
+                                                                    <div class="item_info clearfix">
+                                                                        <p class="title ellipsis">{{ re_good.name }}</p>
+                                                                        <p class="subtitle ellipsis"></p>
+                                                                    </div>
+                                                                    <div class="item_des">
+                                                                        <p class="description">
+                                                                            {{ re_good.desc|slice:40}} ...</p>
+                                                                    </div>
+                                                                    <span href="{% url 'company:goods_detail' re_good.uid %}"
+                                                                          class="details hide">
+						MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+                                                                </div>
+                                                                <div class="item_index">{{ forloop.counter0 }}</div>
+                                                            </a>
+                                                            <a href="{% url 'company:goods_detail' re_good.uid %}"
+                                                               class="details">
+                                                                MORE<i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                            </a>
+                                                            <div class="item_tags clearfix">
+                                                                <i class="fa fa-tags"></i>
+                                                                <a href="{% url 'company:goods_list' re_good.category.name %}">
+                                                                    类别：{{ re_good.category.name }}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <a href="" class="more wow" style="animation-delay:.5s">MORE<i
+                                                            class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'company/footer.html' %}
+
+    </body>
+
+{% endblock %}

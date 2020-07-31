@@ -1,0 +1,100 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block title %}{{ strength.title }}{% endblock %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="postMain"></script>
+{% endblock %}
+{% block head %}
+    <style>
+    .postbody img{
+        display: block;
+        margin: 0 auto;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+<body id="longPage" class="gh0  longPage  bodylistpost bodyservice cn" data-uid="8390" data-form="5f1148915c04e">
+
+<div class="bodyMask"></div>
+
+{% include 'company/header.html' %}
+<div id="sitecontent" class="ff_sitecontent">
+
+    <div class="npagePage post ff_postPage ">
+        <div id="pageTarget" class="ff_pageTarget module">
+            <div class="module_container">
+                <div class="container_target wow">您的位置：<a href="{% url 'company:index' %}">首页</a><i
+                        class="fa fa-angle-right"></i><a href="{% url 'company:strength_list' %}">实力保证</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="mlistpost service module">
+                <div class="module_container">
+                    <div class="container_content">
+                        <div class="content_wrapper">
+                            <div id="postWrapper">
+                                <div class="postContent">
+                                    <div class="postInfo">
+                                        <div class="mainInfor">
+                                            <p class="title">{{ strength.title }}</p>
+                                            <p class="usetdate">
+                                                <span class="year">{{ strength.update_time|date:'Y' }}</span><i class="time-connect">-</i><span
+                                                    class="m">{{ strength.update_time|date:'m' }}</span><i class="time-connect">-</i><span
+                                                    class="d">{{ strength.update_time|date:'d' }}</span>
+                                            </p>
+                                        </div>
+                                        <div class="description"><p>{{ strength.desc|slice:40}}...</p></div>
+                                    </div>
+                                    <div class="postbody">
+                                        {{ strength.body|safe }}
+                                    </div>
+                                    <div class="conTabBtn tabBtn">
+                                        {% if has_prev %}
+                                        <a href="{% url 'company:strength_detail' strength_prev.id %}" class="post-prev">
+                                            <div class="img-wrap">
+                                                <div style="background-image: url(/media/{{ strength_prev.thumbnail }})"></div>
+                                                <img src="/media/{{ strength_prev.thumbnail }}" alt="">
+                                            </div>
+                                            <div class="infor-wrap">
+                                                <span class="title">{{ strength_prev.title }}</span>
+                                                <span class="subtitle"></span>
+                                            </div>
+                                            <i class="details"></i>
+                                            <div class="tabMask"></div>
+                                        </a>
+                                        {% endif %}
+                                        {% if has_next %}
+                                        <a href="{% url 'company:strength_detail' strength_next.id %}" class="post-next">
+                                            <div class="img-wrap">
+                                                <div style="background-image: url(/media/{{ strength_next.thumbnail }})"></div>
+                                                <img src="/media/{{ strength_next.thumbnail }}" alt="">
+                                            </div>
+                                            <div class="infor-wrap">
+                                                <span class="title">{{ strength_next.title }}</span>
+                                                <span class="subtitle"></span>
+                                            </div>
+                                            <i class="details"></i>
+                                            <div class="tabMask"></div>
+                                        </a>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'company/footer.html' %}
+
+</body>
+{% endblock %}

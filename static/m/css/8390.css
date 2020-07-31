@@ -1,0 +1,105 @@
+/* 跟颜色无关的 -start*/
+
+.service.mlistpost .tabBtn a .img-wrap img {
+	opacity: 0;
+}
+.service.mlistpost .tabBtn a {
+	background-color: transparent;
+	border-top: 1px solid rgba(0, 0, 0, .07);
+}
+.service.mlistpost .tabBtn .post-next, .service.mlistpost .tabBtn .post-prev {
+	background-color: transparent;
+}
+.agent-mobile .indexPage .mlist .container_header .title {
+	line-height: 1.3em;
+	font-size: 17px;
+}
+.agent-mobile #category .label .text {
+	font-size: 13px;
+}
+.agent-mobile .postbody {
+	line-height: 1.6em;
+}
+.agent-mobile .mm-menu .mm-navbar>a {
+	color: rgba(0, 0, 0, .5);
+	font-size: 13px;
+}
+.agent-mobile .npagePage.pageEditor .container_header .title {
+	line-height: 1.6em;
+	font-size: 17px;
+}
+.agent-mobile .npagePage .mlist {
+	padding-top: 10px;
+}
+.agent-mobile .npagePage.post #postInfo .description {
+	display: none;
+}
+.agent-mobile .npagePage.post #postContent {
+	border-top: 1px solid rgba(0, 0, 0, .08);
+	padding-top: 20px;
+}
+.agent-mobile .npagePage.post #postInfo .subtitle {
+	margin-top: 7px;
+}
+.agent-mobile .npagePage.formPage .container_header .title {
+	margin-bottom: 5px !important;
+}
+.bodyindex .videom.mlist .content_list .item_wrapper .details, .bodyvideom .videom.mlist .content_list .item_wrapper .details {
+	cursor: pointer;
+}
+.bodyindex .videom.mlist .content_list .item_wrapper .details:hover, .bodyvideom .videom.mlist .content_list .item_wrapper .details:hover {
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+#mcontact .contactinfo>p {
+	padding-right: 0;
+}
+#mcontact .contactinfo>p.contact_add {
+	padding-right: 0;
+}
+.bodyindex .videom .owl-dots {
+	right: 90px;
+	top: -70px;
+}
+.bodyindex .videom.mlist .content_list .item_info {
+	width: 92.5%;
+}
+.ff_indexPage .mcounter {
+	background-position: center bottom !important;
+}
+.ff_indexPage #mcontact .contactinfo>p:nth-of-type(even) {
+	width: 242px;
+}
+.ff_indexPage #mcontact .contactinfo>p:nth-of-type(odd) {
+	width: 342px;
+	padding-left: 0;
+	padding-right: 50px;
+}
+#banner+#pageTarget {
+	line-height: 60px;
+}
+.bodyvideom .videom.mlist .content_list .item_wrapper .description p {
+	float: none;
+}
+.bodylist.bodyvideom .videom .container_content .content_wrapper>a.more {
+	display: none;
+}
+.service.mlistpost .tabBtn .post-prev.empty {
+	background-color: #fff;
+}
+.ff_postPage .service.mlistpost .listContent_post {
+	display: none;
+}
+ @media screen and (max-width: 1280px) {
+.ff_postPage .team.mlistpost .postbody p:first-child img {
+	left: 0;
+}
+}
+.ff_indexPage .ad01.mlist .content_list .item_block {
+	float: none;
+	display: inline-block;
+}
+.ff_indexPage .ad01.mlist .content_list {
+	text-align: center;
+	font-size: 0;
+}
+/* 跟颜色无关的-end */

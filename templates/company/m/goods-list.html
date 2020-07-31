@@ -1,0 +1,136 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    产品中心
+{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+       {% include 'company/m/header.html' %}
+
+        <div class="perch-box">
+            <p></p>
+        </div>
+        <div class="npagePage">
+            <div class="content">
+                <div class="mlist project module">
+                    <div class="bgmask"></div>
+                    <div class="m_container">
+
+                        <div class="content">
+                            <div class="wrapper">
+                                <ul class="content_list clearfix">
+                                    {% for good in goods.object_list %}
+                                    <li id="item_block_{{ forloop.counter0 }}" class="item_block wow">
+                                        <a href="{% url 'company:goods_detail' good.uid %}" class="item_box">
+                                            <div class="item_img" target="_blank">
+                                                <img src="/media/{{ good.thumbnail }}"/>
+                                                <div class="item_mask"></div>
+                                            </div>
+                                            <div class="item_wrapper clearfix">
+                                                <div class="item_info clearfix">
+                                                    <div class="text_wrap">
+                                                        <p class="title ellipsis">{{ good.name }}</p>
+                                                        <p class="subtitle ellipsis"></p>
+                                                    </div>
+                                                    <p class="date_wrap">
+                                                        <span class="year">{{ good.create_time|date:'Y' }}</span>
+                                                        <span class="md">{{ good.create_time|date:'m-d' }}</span>
+                                                    </p>
+                                                </div>
+                                                <div class="item_des">
+                                                    <p class="description">{{ good.desc|slice:40}}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'company:goods_detail' good.uid %}" class="details">详情<i
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <div class="item_tags clearfix"><i class="fa fa-tags"></i><a
+                                                href="{% url 'company:goods_list' good.category.name %}">类别：{{ good.category.name }}</a>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <a href="{% url 'company:goods_list_all' %}" class="more wow"
+                                   style="animation-delay:.5s">更多<i class="fa fa-angle-right"
+                                                                    aria-hidden="true"></i></a>
+                            </div>
+                            <div id="pages">
+                                {% for page in goods.pages %}
+                                    {% if page %}
+                                        {% ifequal page goods.number %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="active">{{ page }}</a>
+                                        {% else %}
+                                            <a href="?{{ page.querystring }}"
+                                               class="">{{ page }}</a>
+                                        {% endifequal %}
+                                    {% else %}
+                                        <a href="####"
+                                           class="">...</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+
+
+
+{% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+    <div class="list_nav">
+
+
+        <div id="category" class="dropmenu pro-dropmenu">
+
+            <div class="label">
+
+                <div class="text">全部</div>
+
+                <i class="down fa fa-angle-down transform"></i>
+
+            </div>
+
+
+            <div class="cate-box">
+
+
+                <ul class="transform">
+
+
+                    <li><a href="{% url 'company:goods_list_all' %}" {% if request.path == '/goods/category/' %}class="active"{% endif %}>全部</a></li>
+
+                    {% for category in categories %}
+                    <li><a href="{% url 'company:goods_list' category.name %}" {% if category.name in request.path %}
+                    class="active"
+                    {% endif %} >{{ category.name }}</a></li>
+                    {% endfor %}
+
+
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    </body>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'company/base.html' %}
+{% load static %}
+{% block head-main %}
+    <script type="text/javascript" src="{% static 'js/org.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block title %}
+视频中心
+{% endblock %}
+{% block body %}
+<body id="longPage" class="gh0  longPage  bodylist bodyvideom cn" data-uid="8390" data-form="5f1148910574d">
+
+<div class="bodyMask"></div>
+
+{% include 'company/header.html' %}
+<div id="sitecontent" class="ff_sitecontent">
+    <div class="npagePage ff_pageList">
+        <div id="banner">
+            <div style="background-image:url({% static 'images/1525254393978.jpg' %});"></div>
+
+        </div>
+        <div id="pageTarget" class="ff_pageTarget module">
+
+            <div class="module_container">
+
+                <div class="container_header wow hide">
+
+                    <p class="title">视频中心</p>
+
+                    <p class="subtitle">安姐在线教学，科普育儿知识</p>
+
+                </div>
+
+                <div class="container_target wow">您的位置：
+                    <a href="{% url 'company:index' %}"
+
+                    >首页</a><i class="fa fa-angle-right"></i>
+                    <a href="{% url 'company:video_list' %}"
+
+                    >视频中心</a></div>
+
+
+                <div class="container_category wow movedx" data-movedx-mid="2" data-movedx-distance="15">
+
+
+                </div>
+
+
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+        <div class="content">
+            <div class="mlist videom module ff_noSlider" style=" ">
+                <div class="bgmask"></div>
+                <div class="module_container">
+                    <div class="container_content nocat">
+                        <div class="content_wrapper">
+                            <div class="content_list clearfix">
+                                {% for video in videos.object_list %}
+                                <div data-href="/media/{{ video.video }}"
+                                     data-index="{{ forloop.counter0 }}" class="item_block_{{ forloop.counter0 }} item_block wow" style="animation-delay:.{{ forloop.counter0 }}s">
+                                    <div class="item_index">{{ forloop.counter0 }}</div>
+                                    <div data-href="/media/{{ video.video }}"
+                                         class="item_box videom-box">
+                                        <div class="item_img" target="_blank">
+                                            <img src="/media/{{ video.thumbnail }}"/>
+                                            <div class="item_mask"></div>
+                                        </div>
+                                        <div class="item_wrapper clearfix">
+                                            <div class="item_info clearfix">
+                                                <p class="title ellipsis">{{ video.title}}</p>
+                                                <p class="subtitle ellipsis">来源：{{ video.get_source_display }}</p>
+                                            </div>
+                                            <div class="item_des">
+                                                <div class="description">{{video.desc}}</div>
+                                            </div>
+                                            <span data-href="/media/{{ video.video }}"
+                                                  class="details hide">
+						MORE
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+                                        </div>
+                                        <div class="item_index">01</div>
+                                    </div>
+                                    <a href="/media/{{ video.video }}"
+                                       class="details">
+                                        MORE
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="item_tags clearfix">
+                                        <i class="fa fa-tags"></i>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div id="pages">
+                            <a class="prev disable hide" href="javascript:;"><i class="fa fa-angle-left"></i></a>
+                            {% for page in videos.pages %}
+                                {% if page %}
+                                    {% ifequal page videos.number %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="page-item  active">{{ page }}</a>
+                                {% else %}
+                                    <a href="?{{ page.querystring }}"
+                                       class="page-item">{{ page }}</a>
+                                    {% endifequal %}
+                                {% endif %}
+                            {% endfor %}
+                            <a class="next disable hide" href="javascript:;"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="clear"></div>
+
+        </div>
+
+    </div>
+</div>
+{% include 'company/footer.html' %}
+</body>
+{% endblock %}

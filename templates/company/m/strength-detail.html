@@ -1,0 +1,50 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    {{ strength.title }}
+{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="postMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+{% include 'company/m/header.html' %}
+        <div class="npagePage post ">
+
+
+            <div class="content">
+                <div class="mlistpost service module">
+                    <div class="module_container">
+                        <div class="container_content">
+                            <div class="content_wrapper">
+                                <div id="postWrapper">
+                                    <div id="postInfo">
+                                        <p class="title">{{ strength.title }}</p>
+                                        <p class="subtitle"></p>
+                                        <div class="description"><p>{{ strength.desc}}...</p></div>
+                                    </div>
+                                    <div id="postContent">
+                                        <div class="postbody">{{strength.body|safe}}</div>
+                                        <div class="clear"></div>
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+{% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+    </body>
+{% endblock %}

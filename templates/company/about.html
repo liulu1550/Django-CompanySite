@@ -1,0 +1,60 @@
+{% extends 'company/base.html' %}
+{% block title %}
+关于我们
+{% endblock %}
+
+{% block head-main %}
+
+{% endblock %}
+
+{% block body %}
+<body id="longPage" class="gh0  longPage   bodypage cn" data-uid="8390" data-form="5f114891794cb">
+
+<div class="bodyMask"></div>
+
+{% include 'company/header.html' %}
+<div id="sitecontent" class="ff_sitecontent">
+    <!--content_editor为区分新旧编辑器类名-->
+    <div class="npagePage pageEditor " id="page_about">
+        <!--  < -->
+
+        <div class="content">
+
+            <div class="mpageEditor module">
+
+                <div class="module_container">
+
+                    <div class="container_header wow">
+
+                        <p class="title">关于我们</p>
+
+
+                        <p class="subtitle">致力于为广大宝宝和宝妈提供一个更好的育婴平台</p>
+
+
+                    </div>
+
+                    <div class="container_content">
+
+                        <div class="content_wrapper">
+
+                            <div class="postbody">
+                                {{ about.body|safe }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% include 'company/footer.html' %}
+</body>
+{% endblock %}

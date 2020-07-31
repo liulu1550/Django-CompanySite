@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="agent-pc theme-w theme-wgreen">
+<head>
+    <meta charset="utf-8">
+    <meta name=renderer content=webkit>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{% endblock %} - {{ site_name }}</title>{% if news_seo %}
+    <meta name="keywords" content="{{ news_seo.keywords }}">
+    <meta name="description" content="{{ news_seo.description}}">{% else %}
+    <meta name="keywords" content="{{ site_keywords }}">
+    <meta name="description" content="{{ site_description}}">{% endif %}
+    <meta name="author" content="{{ site_name }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lib2.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.8390.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/des.8390.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/wgreen.css' %}" id="themeCssPath">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/8390.css' %}" id="ucssurl">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+
+      {% block head-main %}{% endblock %}
+
+    <script type="text/javascript" src="{% static 'js/8390.js' %}"></script>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    {% block head %}{% endblock %}
+<style>
+    :root{
+	--color:{{ site_theme }}
+}
+</style>
+
+</head>
+{% block body %}{% endblock %}
+</html>

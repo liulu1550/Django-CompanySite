@@ -1,0 +1,70 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    联系我们
+{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+        {% include 'company/m/header.html' %}
+
+
+        <div class="npagePage pageEditor " id="page_contact">
+
+
+            <div id="banner">
+
+                <div style="background-image:url({% static 'm/images/1525251388933.jpg' %});"></div>
+
+            </div>
+
+
+            <div class="content">
+
+                <div class="mpageEditor module">
+
+                    <div class="module_container">
+
+                        <div class="container_header wow">
+
+                            <p class="title">联系我们</p>
+                            <p class="subtitle">Contact Us</p></div>
+
+                        <div class="container_content">
+
+                            <div class="content_wrapper">
+
+                                <div class="postbody">
+                                    <hr/>
+                                {{contact.body|safe}}<p><br/></p>
+                                    <p style="text-align:center">
+                                        <iframe scrolling="no"
+                                                src='{% static 'html/map.html' %}#{"position":"{{site_baidu_map_x_y}}","title":"
+                                                {{site_name}}","description":"{{site_address}}","theme":"grayscale","fw":0,"height":0}'
+                                                width="100%" height="360" frameborder="0"></iframe>
+                                    </p>
+                                    <p style="text-align:center">&nbsp; &nbsp; &nbsp; &nbsp;</p>
+                                    <p style="text-align:center">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+       {% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+    </body>
+{% endblock %}

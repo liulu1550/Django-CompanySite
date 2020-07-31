@@ -1,0 +1,49 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}{{ news.title }}{% endblock %}
+{% block main-head %}
+    <script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="postMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+       {% include 'company/m/header.html' %}
+        <div class="npagePage post ">
+
+
+            <div class="content">
+                <div class="mlistpost news module">
+                    <div class="module_container">
+                        <div class="container_content">
+                            <div class="content_wrapper">
+                                <div id="postWrapper">
+                                    <div id="postInfo">
+                                        <p class="title">{{ news.title}}</p>
+                                        <p class="subtitle">{{ news.create_time|date:'Y-m-d' }}</p>
+                                        <div class="description"><p>{{ news.desc}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div id="postContent">
+                                        <div class="postbody">{{ news_body.body|safe }}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+            {% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+
+
+    </body>
+{% endblock %}

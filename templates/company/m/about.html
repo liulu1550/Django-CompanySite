@@ -1,0 +1,56 @@
+{% extends 'company/m/base.html' %}
+{% load static %}
+{% block title %}
+    关于我们
+{% endblock %}
+{% block main-head %}
+<script type="text/javascript" src="{% static 'm/script/mmen.js' %}" data-main="baseMain"></script>
+{% endblock %}
+{% block body %}
+    <body>
+    <div id="bodymask"></div>
+    <div id="sitecontent" style="overflow:hidden;">
+        {% include 'company/m/header.html' %}
+
+
+        <div class="npagePage pageEditor " id="page_about">
+
+
+            <div class="content">
+
+                <div class="mpageEditor module">
+
+                    <div class="module_container">
+
+                        <div class="container_header wow">
+
+                            <p class="title">关于我们</p>
+                            <p class="subtitle">致力于为广大宝宝和宝妈提供一个更好的育婴平台</p></div>
+
+                        <div class="container_content">
+
+                            <div class="content_wrapper">
+
+                                <div class="postbody">
+                                    <hr/>
+                                    {{ about.body|safe }}</div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% include 'company/m/footer.html' %}
+{% include 'company/m/nav.html' %}
+
+{% include 'company/m/online.html' %}
+    </body>
+{% endblock %}
