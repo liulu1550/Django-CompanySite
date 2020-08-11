@@ -200,3 +200,8 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'xxxxxx'  # 帐号
 EMAIL_HOST_PASSWORD = 'xxxxxx'  # 密码
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+# 自定义，可以手机号码或用户名登录
+AUTHENTICATION_BACKENDS = ['utils.custom.CustomBackend']
